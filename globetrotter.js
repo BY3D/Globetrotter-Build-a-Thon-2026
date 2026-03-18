@@ -24,3 +24,5 @@ console.log(`Loading ${alias}...`);
 await model.load();
 console.log(`Loaded: ${model.id}`);
 console.log(`Endpoint: ${manager.urls[0]}/v1`);
+console.log(`Unload: ${model.id}`);
+await model.unload();
