@@ -43,9 +43,11 @@ console.log(`Execution Provider: ${model.execution_provider}`);
 console.log(`Cached Size: ${model.file_size_mb}`);
 
 // Generate a streaming chat completion
+const user_prompt = "Where is the Taj Mahal and can you give me an overview of it?";
+console.log(`User prompt: ${user_prompt}`)
 const stream = await client.chat.completions.create({
   model: model.id,
-  messages: [{ role: "user", content: "What is the golden ratio?" }],
+  messages: [{ role: "user", content: user_prompt }],
   stream: true,
 });
 
