@@ -42,6 +42,20 @@ console.log(`Device Type: ${model.device_type}`);
 console.log(`Execution Provider: ${model.execution_provider}`);
 console.log(`Cached Size: ${model.file_size_mb}`);
 
+// Generate a streaming chat completion
+const stream = await client.chat.completions.create({
+  model: model.id,
+  messages: [{ role: "user", content: "What is the golden ratio?" }],
+  stream: true,
+});
+
+for await (const chunk of stream) {
+  if (chunk.choices[0]?.delta?.content) {
+    process.stdout.write(chunk.choices[0].delta.content);
+  }
+}
+console.log();
+
 // 6. Unload it
 console.log(`\nUnloading ${alias}...`);
 await model.unload();

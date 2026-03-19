@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "foundry-local-sdk": "^0.9.0"
+    "foundry-local-sdk": "^0.9.0",
+    "openai": "^6.32.0"
   }
 }
