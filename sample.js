@@ -1,10 +1,12 @@
+import { OpenAI } from "openai";
 import { FoundryLocalManager } from "foundry-local-sdk";
 console.log("SDK installed successfully");
 
 const alias = "phi-4-mini";
 
 // 1. Create a manager and start the service
-FoundryLocalManager.create({ appName: "SDKDemo" });
+console.log("Start Local Foundry service")
+FoundryLocalManager.create({ appName: "SampleJS" });
 const manager = FoundryLocalManager.instance;
 await manager.startWebService();
 
@@ -19,6 +21,8 @@ console.log(`Cached:      ${model.isCached}`);
 if (!model.isCached) {
   console.log(`Downloading ${alias}...`);
   await model.download();
+} else {
+  console.log(`Model ${alias} is already downloaded`)
 }
 
 // 4. Load it
@@ -26,6 +30,12 @@ console.log(`\nLoading ${alias}...`);
 await model.load();
 console.log(`Loaded: ${model.id}`);
 console.log(`Endpoint: ${manager.urls[0]}/v1`);
+
+// Create an OpenAI client pointing to the LOCAL Foundry service
+const client = new OpenAI({
+  baseURL: manager.urls[0] + "/v1",   // Dynamic port - never hardcode!
+  apiKey: "foundry-local",
+});
 
 // 5. Get Info
 console.log(`Device Type: ${model.device_type}`);
