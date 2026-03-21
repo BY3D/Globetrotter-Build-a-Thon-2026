@@ -12,5 +12,5 @@ Users are only allowed to either write about the following two things:
 1. Ask questions about landmarks, points of interest, and popular locations.
 2. Statements about landmarks, points of interest, and popular locations.
 For any other question or statement, tell the user "I cannot answer your query. Ask me about landmarks."
-If the user's input text is valid, then capitalise the name of the landmark, point of interest, or popular location.`
+If the user's input text is valid, then capitalise the name of the landmark, point of interest, or popular location.`;
 
