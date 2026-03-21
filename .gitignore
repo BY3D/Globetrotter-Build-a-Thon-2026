@@ -7,5 +7,5 @@ __pycache__/
 
 # Node.js Files
 .ntvs_analysis.dat
-node_modules/
+/node_modules
 package-lock.json
