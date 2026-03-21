@@ -1,3 +1,11 @@
+/**
+ * Set up the following services for GlobeTrotter
+ * Microsoft Foundry Local
+ * The LLM from Foundry Local
+ * OpenAI client to communicate with the LLM
+ * TODO: Write an Azure-equivalent of this file
+ */
+
 import { OpenAI } from "openai";
 import { FoundryLocalManager } from "foundry-local-sdk";
 
@@ -6,7 +14,7 @@ const LLM_SIZE = "4 GB"
 
 // Create the Foundry Local service
 console.log("Instantiate Foundry Local service")
-FoundryLocalManager.create({ appName: "GlobeSpinner" });
+FoundryLocalManager.create({ appName: "GlobeTrotter" });
 const manager = FoundryLocalManager.instance;
 await manager.startWebService();
 
