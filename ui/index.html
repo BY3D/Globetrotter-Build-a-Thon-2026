@@ -1,15 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
+    <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
     <title>Globetrotter</title>
 </head>
+
 <body>
     <!-- -->
     <form id="chatbox">
         <textarea id="user-input" placeholder="Welcome" required></textarea>
         <button type="submit">←</button>
     </form>
-    <script src="globetrotter.js"></script>
+    <!-- MapLibre-GL Globe -->
+    <div id='map' style='width: 400px; height: 300px;'></div>
+    <script>
+        var map = new maplibregl.Map({
+            container: 'map',
+            style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
+            center: [0, 0], // starting position [longitude, latitude]
+            zoom: 2 // starting zoom
+        });
+
+        map.on('style.load', () => {
+            map.setProjection({
+                type: 'globe', // Set projection to globe
+            });
+        });
+
+        const marker = new maplibregl.Marker()
+            .setLngLat([0, 0]) // [longitude, latitude]
+            .addTo(map);
+    </script>
+    <script>
+        var url = "https://en.wikipedia.org/w/api.php";
+
+        var params = {
+            action: "query",
+            list: "geosearch",
+            gscoord: "29.9771933 | 31.1320398",
+            gsradius: "10000",
+            gslimit: "10",
+            format: "json"
+        };
+
+        url = url + "?origin=*";
+        Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
+
+        fetch(url)
+            .then(function (response) { return response.json(); })
+            .then(function (response) {
+                var pages = response.query.geosearch;
+                for (var place in pages) {
+                    console.log(pages[place].title);
+                }
+            })
+            .catch(function (error) { console.log(error); });
+    </script>
 </body>
