@@ -1,1 +1,11 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
 /images
+
+# Node.js Files
+.ntvs_analysis.dat
+node_modules/
+package-lock.json
