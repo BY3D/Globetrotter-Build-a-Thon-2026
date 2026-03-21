@@ -39,7 +39,7 @@ async function main() {
     const model = await catalog.getModel("phi-4-mini");
     if (!model.isCached) {
         console.log("Downloading model: phi-4-mini...");
-        await model.download();
+        await model.download(); // Phi-4-mini is 3.86 GB
     }
     await model.load();
 
