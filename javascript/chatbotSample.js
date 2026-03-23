@@ -142,6 +142,18 @@ async function main() {
         name: "Editor",
     });
 
+    const thief = await client.responses.create({
+        modelId: model.id,
+        input: [
+            { role: "system", content: "You are a comedian who constantly laughs." },
+            { role: "user", content: "What sofas do you recommend from IKEA?" }
+        ],
+        name: "Thief",
+        temperature: 0.7,
+        max_ouput_tokens: 700,
+    });
+    //console.log(thief.output.content.text);
+
     //const topic = "What's the best way to vacuum my room?";
     const topic = "Where is the Taj Mahal?";
 

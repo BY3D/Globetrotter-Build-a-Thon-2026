@@ -5,6 +5,7 @@ __pycache__/
 
 /images
 /javascript/keys.js
+/javascript/Other
 
 # Node.js Files
 .ntvs_analysis.dat
