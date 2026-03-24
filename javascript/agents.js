@@ -1,6 +1,6 @@
 import { OpenAI } from "openai";
 import { FoundryLocalManager } from "foundry-local-sdk";
-// import * as readline from "node:readline/promises";
+import * as readline from "node:readline/promises";
 
 class LLMAgent {
     constructor({ client, modelId, instructions, name }) {
@@ -64,10 +64,15 @@ async function main() {
         client: client,
         modelId: model.id,
         instructions:
-            "You are an agent that parses a user's message. " +
-            "If you find in the user's message " +
+            "You are an agent that only replies to a user's message if it is about the following: " +
+            "1. points of interest " +
+            "2. landmarks " +
+            "3. famous locations " +
+            "If you do not find in the user's message " +
             "a point of interest, famous location, or landmark, " +
-            "then capitalise the name of that place.",
+            "then ask the user to repeat what they said. " +
+            "Do not answer any other message. " +
+            "Do not apologise.",
         name: "Parser",
     });
 
@@ -75,8 +80,11 @@ async function main() {
         client: client,
         modelId: model.id,
         instructions:
-            "You are an agent that only finds geographic coordinates of points of interest. " +
-            "When given the name of a location, return its geographic coordinates in JSON format. " +
+            "You are an agent that ONLY finds geographic coordinates of points of interest. " +
+            "If the message contains the name of a location, " +
+            "Then ONLY return its geographic coordinates in JSON format. " +
+            "Do not say anything else. " +
+            `If the geographic coordinates cannot be found, then say "IDK 🫠"` +
             "Use the following template for formatting the coordinates: " +
             `{"latitude": ##.####, "longitude": ##.####} `,
         name: "Locator",
@@ -86,10 +94,9 @@ async function main() {
         client: client,
         modelId: model.id,
         instructions:
-            "You are an agent that only finds geographic coordinates of points of interest. " +
-            "When given the name of a location, return its geographic coordinates in JSON format. " +
-            "Use the following template for formatting the coordinates: " +
-            `{"latitude": ##.####, "longitude": ##.####} `,
+            "You are only a researcher for points of interest. " +
+            "List 6 facts about the point of interest, landmark, or famous location. " +
+            "Do not invent facts.",
         name: "Researcher",
     });
 
@@ -99,7 +106,8 @@ async function main() {
         instructions:
             "You are a writer that writes factual disciplined descriptions " +
             "of points of interest around the world. " +
-            "Only write up to 150 words for the description",
+            "Only write up to 200 words for the description." +
+            "Do not invent facts and do not write in point form.",
         name: "Describer",
     });
 
@@ -107,7 +115,7 @@ async function main() {
         client: client,
         modelId: model.id,
         instructions:
-            "You are a senior editor for descriptions. Review the description below for clarity, " +
+            "You are a senior editor for descriptions. Review the description for clarity, " +
             "grammar, and factual consistency with the research notes. " +
             "Provide a brief editorial verdict: ACCEPT if the descriptions is " +
             "publication-ready, or REVISE with specific suggestions and if the description does not match a location on Earth.",
@@ -125,15 +133,20 @@ async function main() {
     while (true) {
         const userInput = await rl.question("You: ");
         if (["quit", "exit"].includes(userInput.trim().toLowerCase())) break;
-        const parserResult = await parser.run(userInput);
+
+        const parserResult = await parser.respondTo(userInput);
         console.log(`Parser Agent: ${parserResult.text}\n`);
-        const locatorResult = await locator.run(parserResult);
+
+        const locatorResult = await locator.respondTo(parserResult);
         console.log(`Locator Agent: ${locatorResult.text}\n`);
-        const researcherResult = await researcher.run(parserResult);
-        console.log(`Researcher Agent: ${researcherResult.text}\n`);
-        const writerResult = await parser.run(researcherResult);
-        console.log(`Writer Agent: ${writerResult.text}\n`);
-        const editorResult = await parser.run(writerResult);
+
+        const researcherResult = await researcher.respondTo(parserResult);
+        console.log(`Researcher Agent: \n${researcherResult.text}\n`);
+
+        const describerResult = await describer.respondTo(researcherResult);
+        console.log(`Describer Agent: ${describerResult.text}\n`);
+
+        const editorResult = await editor.respondTo(describerResult);
         console.log(`Editor Agent: ${editorResult.text}\n`);
     }
     rl.close();
