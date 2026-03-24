@@ -1,6 +1,7 @@
 import { OpenAI } from "openai";
 import { FoundryLocalManager } from "foundry-local-sdk";
-import * as maplibregl from "./maplibre-gl.js";
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
 import * as readline from "node:readline/promises";
 
 class LLMAgent {
@@ -132,6 +133,7 @@ async function main() {
     });
 
     // Step 6.1 - Load MapLibre GL
+    const mapElement = document.getElementById("MapLibre")
     const map = new maplibregl.Map({
         container: 'MapLibre',
         style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
@@ -146,6 +148,7 @@ async function main() {
     const marker = new maplibregl.Marker()
         .setLngLat([0, 0]) // [longitude, latitude]
         .addTo(map);
+    mapElement.append(map);
 
     console.log("Chat with the agent (type 'quit' to exit):\n");
     while (true) {
@@ -157,7 +160,11 @@ async function main() {
 
         const locatorResult = await locator.respondTo(parserResult);
         console.log(`Locator Agent: ${locatorResult.text}\n`);
-        
+        let poi = JSON.parse(locatorResult.text);
+        map.flyTo({ 
+            center: [poi.longitude, poi.latitude],
+            essential: true
+        });
 
         const researcherResult = await researcher.respondTo(parserResult);
         console.log(`Researcher Agent: \n${researcherResult.text}\n`);
