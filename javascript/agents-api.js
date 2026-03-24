@@ -40,34 +40,35 @@ class LLMAgent {
 
 let agents = {};
 let initialised = false;
+const modelAlias = "phi-4-mini"; // 3.86 GB download
 
-async function initialize() {
+async function initialise() {
     if (initialised) return;
 
     try {
         // Step 1: Set up the Foundry Local Manager
-        console.log("Initializing Foundry Local Manager...");
+        console.log("Initialising Foundry Local Manager...");
         FoundryLocalManager.create({ appName: "GlobeTrotter" });
         const manager = FoundryLocalManager.instance;
         await manager.startWebService();
 
-        // Step 2: Get and load model
-        console.log("Loading phi-4-mini model...");
+        // Step 2: Load the LLM model. Download it if not cached already
+        console.log(`Loading ${modelAlias} model...`);
         const catalog = manager.catalog;
-        const model = await catalog.getModel("phi-4-mini");
+        const model = await catalog.getModel(modelAlias);
         if (!model.isCached) {
-            console.log("Downloading model: phi-4-mini... (this may take a while)");
-            await model.download(); // Phi-4-mini is 3.86 GB
+            console.log(`Downloading model: ${modelAlias}... (this may take a while)`);
+            await model.download();
         }
         await model.load();
 
-        // Step 3: Set up OpenAI client
+        // Step 3: Set up the OpenAI client
         const client = new OpenAI({
             baseURL: manager.urls[0] + "/v1",
             apiKey: "foundry-local",
         });
 
-        // Step 4: Create agents with their instructions
+        // Step 4: Create the agents with their instructions
         agents.parser = new LLMAgent({
             client: client,
             modelId: model.id,
@@ -127,16 +128,16 @@ async function initialize() {
         });
 
         initialised = true;
-        console.log("Agents initialized successfully!");
+        console.log("Agents initialised successfully!");
     } catch (error) {
-        console.error("Error during agent initialization:", error);
+        console.error("Error during agent initialisation:", error);
         throw error;
     }
 }
 
 async function processUserInput(userInput) {
     if (!initialised) {
-        throw new Error("Agents not initialized");
+        throw new Error("Agents not initialised");
     }
 
     try {
@@ -183,6 +184,6 @@ async function processUserInput(userInput) {
 }
 
 module.exports = {
-    initialize,
+    initialize: initialise,
     processUserInput,
 };
