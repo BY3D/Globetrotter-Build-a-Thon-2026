@@ -39,10 +39,10 @@ class LLMAgent {
 }
 
 let agents = {};
-let initialized = false;
+let initialised = false;
 
 async function initialize() {
-    if (initialized) return;
+    if (initialised) return;
 
     try {
         // Step 1: Set up the Foundry Local Manager
@@ -126,7 +126,7 @@ async function initialize() {
             name: "Editor",
         });
 
-        initialized = true;
+        initialised = true;
         console.log("Agents initialized successfully!");
     } catch (error) {
         console.error("Error during agent initialization:", error);
@@ -135,7 +135,7 @@ async function initialize() {
 }
 
 async function processUserInput(userInput) {
-    if (!initialized) {
+    if (!initialised) {
         throw new Error("Agents not initialized");
     }
 
