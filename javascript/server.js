@@ -141,6 +141,6 @@ agentsAPI.initialize()
     });
   })
   .catch((error) => {
-    console.error('Failed to initialize agents:', error);
+    console.error('Failed to initialise agents:', error);
     process.exit(1);
   });
