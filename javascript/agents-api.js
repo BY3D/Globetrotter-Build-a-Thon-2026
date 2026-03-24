@@ -148,10 +148,10 @@ async function processUserInput(userInput) {
         // Step 2: Locator gets coordinates
         const locatorResult = await agents.locator.respondTo(parserText);
         const locatorText = locatorResult.text;
-
+        // Is using Phi-4-mini, then it will always return coordinates in lat-long form.
+        // Trying to have it return coordinates as long-lat is currently not possible.
         let coordinates = null;
         try {
-            // Try to parse JSON coordinates
             coordinates = JSON.parse(locatorText);
         } catch {
             coordinates = { error: locatorText };
