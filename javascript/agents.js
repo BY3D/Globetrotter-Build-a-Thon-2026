@@ -1,5 +1,6 @@
 import { OpenAI } from "openai";
 import { FoundryLocalManager } from "foundry-local-sdk";
+import * as maplibregl from "./maplibre-gl.js";
 import * as readline from "node:readline/promises";
 
 class LLMAgent {
@@ -64,15 +65,16 @@ async function main() {
         client: client,
         modelId: model.id,
         instructions:
-            "You are an agent that only replies to a user's message if it is about the following: " +
-            "1. points of interest " +
-            "2. landmarks " +
-            "3. famous locations " +
-            "If you do not find in the user's message " +
-            "a point of interest, famous location, or landmark, " +
-            "then ask the user to repeat what they said. " +
-            "Do not answer any other message. " +
-            "Do not apologise.",
+            `You are an agent that only replies to a user's message if it is about the following:
+            1. points of interest
+            2. landmarks
+            3. famous locations
+            Limit your response to 250 words.
+            If you do not find in the user's message 
+            a point of interest, famous location, or landmark,
+            then ask the user to clarify what he or she said.
+            Do not answer any other message.
+            Never apologise.`,
         name: "Parser",
     });
 
@@ -80,13 +82,13 @@ async function main() {
         client: client,
         modelId: model.id,
         instructions:
-            "You are an agent that ONLY finds geographic coordinates of points of interest. " +
-            "If the message contains the name of a location, " +
-            "Then ONLY return its geographic coordinates in JSON format. " +
-            "Do not say anything else. " +
-            `If the geographic coordinates cannot be found, then say "IDK 🫠"` +
-            "Use the following template for formatting the coordinates: " +
-            `{"latitude": ##.####, "longitude": ##.####} `,
+            `You are an agent that ONLY returns geographic coordinates of points of interest. 
+            If the message contains the name of a location, 
+            Then ONLY return its geographic coordinates in JSON format. 
+            Do not say anything else. 
+            If the geographic coordinates cannot be found, then say "IDK 🫠"
+            Use the following template for formatting the coordinates: " 
+            {"longitude": ##.####, "latitude": ##.####}` ,
         name: "Locator",
     });
 
@@ -94,9 +96,9 @@ async function main() {
         client: client,
         modelId: model.id,
         instructions:
-            "You are only a researcher for points of interest. " +
-            "List 6 facts about the point of interest, landmark, or famous location. " +
-            "Do not invent facts.",
+            `You are only a researcher for points of interest. 
+            List 6 facts about the point of interest, landmark, or famous location. 
+            Do not invent facts.`,
         name: "Researcher",
     });
 
@@ -104,10 +106,10 @@ async function main() {
         client: client,
         modelId: model.id,
         instructions:
-            "You are a writer that writes factual disciplined descriptions " +
-            "of points of interest around the world. " +
-            "Only write up to 200 words for the description." +
-            "Do not invent facts and do not write in point form.",
+            `You are a writer that writes factual disciplined descriptions 
+            of points of interest around the world. 
+            Only write up to 200 words for the description. 
+            Do not invent facts and do not write in point form.`,
         name: "Describer",
     });
 
@@ -115,10 +117,10 @@ async function main() {
         client: client,
         modelId: model.id,
         instructions:
-            "You are a senior editor for descriptions. Review the description for clarity, " +
-            "grammar, and factual consistency with the research notes. " +
-            "Provide a brief editorial verdict: ACCEPT if the descriptions is " +
-            "publication-ready, or REVISE with specific suggestions and if the description does not match a location on Earth.",
+            `You are a senior editor for descriptions. Review the description for clarity, 
+            grammar, and factual consistency with the research notes. 
+            Provide a brief editorial verdict: ACCEPT if the descriptions is 
+            publication-ready, or REVISE with specific suggestions and if the description does not match a location on Earth.`,
         name: "Editor",
     });
 
@@ -128,6 +130,22 @@ async function main() {
         input: process.stdin,
         output: process.stdout,
     });
+
+    // Step 6.1 - Load MapLibre GL
+    const map = new maplibregl.Map({
+        container: 'MapLibre',
+        style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
+        center: [0, 0], // starting position [longitude, latitude]
+        zoom: 2 // starting zoom
+    });
+    map.on('style.load', () => {
+        map.setProjection({
+            type: 'globe', // Set projection to globe
+        });
+    });
+    const marker = new maplibregl.Marker()
+        .setLngLat([0, 0]) // [longitude, latitude]
+        .addTo(map);
 
     console.log("Chat with the agent (type 'quit' to exit):\n");
     while (true) {
@@ -139,6 +157,7 @@ async function main() {
 
         const locatorResult = await locator.respondTo(parserResult);
         console.log(`Locator Agent: ${locatorResult.text}\n`);
+        
 
         const researcherResult = await researcher.respondTo(parserResult);
         console.log(`Researcher Agent: \n${researcherResult.text}\n`);
