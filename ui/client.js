@@ -1,0 +1,167 @@
+// Client-side chat interface for Globetrotter
+class ChatClient {
+  constructor() {
+    this.apiUrl = 'http://localhost:8000/api/chat';
+    this.isLoading = false;
+    this.setupUI();
+  }
+
+  setupUI() {
+    const chatForm = document.getElementById('chatbox');
+    const userInput = document.getElementById('user-input');
+    const generateButton = document.getElementById('generate-response');
+
+    if (chatForm) {
+      chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const message = userInput.value.trim();
+        if (message) {
+          this.sendMessage(message);
+          userInput.value = '';
+        }
+      });
+    }
+
+    // Check server health on load
+    this.checkServerHealth();
+  }
+
+  async checkServerHealth() {
+    try {
+      const response = await fetch('http://localhost:8000/api/health');
+      if (!response.ok) {
+        console.warn('Server health check failed');
+      }
+    } catch (error) {
+      console.error('Cannot connect to server. Make sure server.js is running:', error);
+      this.displayError('Cannot connect to server. Make sure to run: node server.js');
+    }
+  }
+
+  async sendMessage(message) {
+    if (this.isLoading) return;
+
+    this.isLoading = true;
+    this.displayUserMessage(message);
+
+    try {
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+      this.displayAgentResponses(data);
+
+      // Update map if coordinates are available
+      if (data.coordinates && data.coordinates.longitude && data.coordinates.latitude) {
+        this.updateMap(data.coordinates);
+      }
+    } catch (error) {
+      console.error('Failed to get response:', error);
+      this.displayError(`Error: ${error.message}`);
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  displayUserMessage(message) {
+    const chatbox = document.getElementById('chatbox');
+    if (chatbox) {
+      const messageDiv = document.createElement('div');
+      messageDiv.style.marginTop = '10px';
+      messageDiv.style.padding = '8px';
+      messageDiv.style.backgroundColor = '#e3f2fd';
+      messageDiv.style.borderRadius = '4px';
+      messageDiv.innerHTML = `<strong>You:</strong> ${this.escapeHtml(message)}`;
+      chatbox.parentNode.insertBefore(messageDiv, chatbox.nextSibling);
+    }
+  }
+
+  displayAgentResponses(data) {
+    const chatbox = document.getElementById('chatbox');
+    if (!chatbox) return;
+
+    const responsesDiv = document.createElement('div');
+    responsesDiv.style.marginTop = '15px';
+    responsesDiv.style.padding = '10px';
+    responsesDiv.style.backgroundColor = '#f5f5f5';
+    responsesDiv.style.borderRadius = '4px';
+    responsesDiv.style.fontSize = '14px';
+
+    let html = '';
+
+    if (data.parser) {
+      html += `<div><strong>🔍 Parser:</strong> ${this.escapeHtml(data.parser)}</div>`;
+    }
+
+    if (data.locator) {
+      html += `<div style="margin-top: 8px;"><strong>📍 Locator:</strong> ${this.escapeHtml(data.locator)}</div>`;
+    }
+
+    if (data.researcher) {
+      html += `<div style="margin-top: 8px;"><strong>📚 Researcher:</strong> ${this.escapeHtml(data.researcher)}</div>`;
+    }
+
+    if (data.describer) {
+      html += `<div style="margin-top: 8px;"><strong>✍️ Describer:</strong> ${this.escapeHtml(data.describer)}</div>`;
+    }
+
+    if (data.editor) {
+      html += `<div style="margin-top: 8px;"><strong>✅ Editor:</strong> ${this.escapeHtml(data.editor)}</div>`;
+    }
+
+    responsesDiv.innerHTML = html;
+    chatbox.parentNode.insertBefore(responsesDiv, chatbox.nextSibling);
+
+    // Auto-scroll to latest response
+    responsesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  displayError(message) {
+    const chatbox = document.getElementById('chatbox');
+    if (chatbox) {
+      const errorDiv = document.createElement('div');
+      errorDiv.style.marginTop = '10px';
+      errorDiv.style.padding = '8px';
+      errorDiv.style.backgroundColor = '#ffebee';
+      errorDiv.style.borderRadius = '4px';
+      errorDiv.style.color = '#c62828';
+      errorDiv.innerHTML = `<strong>⚠️ Error:</strong> ${this.escapeHtml(message)}`;
+      chatbox.parentNode.insertBefore(errorDiv, chatbox.nextSibling);
+    }
+  }
+
+  updateMap(coordinates) {
+    // This function will be called when the map is ready
+    if (window.mapInstance) {
+      try {
+        window.mapInstance.flyTo({
+          center: [coordinates.longitude, coordinates.latitude],
+          essential: true,
+          zoom: 10,
+        });
+      } catch (error) {
+        console.error('Failed to update map:', error);
+      }
+    }
+  }
+
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+}
+
+// Initialize chat client when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  window.chatClient = new ChatClient();
+});
