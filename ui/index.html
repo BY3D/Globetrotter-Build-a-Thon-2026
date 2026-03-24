@@ -38,7 +38,7 @@
         const mapInstance = new maplibregl.Map({
             container: 'MapLibre',
             style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
-            center: [78.0419, 27.175], // starting position [longitude, latitude]
+            center: [0, 0], // starting position [longitude, latitude]
             zoom: 2 // starting zoom
         });
 
@@ -48,12 +48,11 @@
             });
         });
 
-        const marker = new maplibregl.Marker()
-            .setLngLat([78.0419, 27.175]) // [longitude, latitude]
-            .addTo(mapInstance);
+        const markerInstance = new maplibregl.Marker();
 
         // Make map instance available to client.js
         window.mapInstance = mapInstance;
+        window.markerInstance = markerInstance;
     </script>
     <script>
         var url = "https://en.wikipedia.org/w/api.php";
