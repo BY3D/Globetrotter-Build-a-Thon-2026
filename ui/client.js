@@ -151,13 +151,25 @@ class ChatClient {
     if (window.mapInstance) {
       try {
         window.mapInstance.flyTo({
-          center: [coordinates.longitude, coordinates.latitude],
+          center: [
+            coordinates.longitude, 
+            coordinates.latitude
+        ],
           essential: true,
-          zoom: 3,
+          zoom: 4,
         });
       } catch (error) {
         console.error('Failed to update map:', error);
       }
+    }
+    if (window.markerInstance) {
+        try {
+        window.markerInstance
+        .setLngLat([coordinates.longitude, coordinates.latitude]) // [longitude, latitude]
+        .addTo(mapInstance);
+        } catch (error) {
+            console.error('Failed to update map marker:', error);
+        }
     }
   }
 
