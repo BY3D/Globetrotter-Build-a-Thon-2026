@@ -60,7 +60,7 @@ async function main() {
      * - Describer
      * - Editor
      */
-    const parser = new ChatAgent({
+    const parser = new LLMAgent({
         client: client,
         modelId: model.id,
         instructions:
@@ -71,7 +71,7 @@ async function main() {
         name: "Parser",
     });
 
-    const locator = new ChatAgent({
+    const locator = new LLMAgent({
         client: client,
         modelId: model.id,
         instructions:
@@ -82,7 +82,7 @@ async function main() {
         name: "Locator",
     });
 
-    const researcher = new ChatAgent({
+    const researcher = new LLMAgent({
         client: client,
         modelId: model.id,
         instructions:
@@ -93,7 +93,7 @@ async function main() {
         name: "Researcher",
     });
 
-    const describer = new ChatAgent({
+    const describer = new LLMAgent({
         client: client,
         modelId: model.id,
         instructions:
@@ -103,7 +103,7 @@ async function main() {
         name: "Describer",
     });
 
-    const editor = new ChatAgent({
+    const editor = new LLMAgent({
         client: client,
         modelId: model.id,
         instructions:
@@ -116,7 +116,38 @@ async function main() {
 
     // Step 6
     // Run the LLMs following a user's response.
-    
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+    });
+
+    console.log("Chat with the agent (type 'quit' to exit):\n");
+    while (true) {
+        const userInput = await rl.question("You: ");
+        if (["quit", "exit"].includes(userInput.trim().toLowerCase())) break;
+        const parserResult = await parser.run(userInput);
+        console.log(`Parser Agent: ${parserResult.text}\n`);
+        const locatorResult = await locator.run(parserResult);
+        console.log(`Locator Agent: ${locatorResult.text}\n`);
+        const researcherResult = await researcher.run(parserResult);
+        console.log(`Researcher Agent: ${researcherResult.text}\n`);
+        const writerResult = await parser.run(researcherResult);
+        console.log(`Writer Agent: ${writerResult.text}\n`);
+        const editorResult = await parser.run(writerResult);
+        console.log(`Editor Agent: ${editorResult.text}\n`);
+    }
+    rl.close();
+
+    console.log("=".repeat(60));
+    console.log("Multi-agent workflow complete!");
+
+    console.log(`\nUnloading ${model.alias}...`);
+    await model.unload();
+    console.log("Unloaded");
+
+    console.log("Ending the service");
+    manager.stopWebService();
+    console.log("Service has ended");
 
 }
 
