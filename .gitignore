@@ -11,3 +11,6 @@ __pycache__/
 .ntvs_analysis.dat
 /node_modules
 package-lock.json
+
+# IntelliJ Files
+/.idea
