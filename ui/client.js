@@ -137,7 +137,7 @@ class ChatClient {
       const errorDiv = document.createElement('div');
       errorDiv.style.marginTop = '10px';
       errorDiv.style.padding = '8px';
-      errorDiv.style.backgroundColor = '#ffebee';
+      errorDiv.style.backgroundColor = '#ffbdc7';
       errorDiv.style.borderRadius = '4px';
       errorDiv.style.color = '#c62828';
       errorDiv.innerHTML = `<strong>⚠️ Error:</strong> ${this.escapeHtml(message)}`;
@@ -145,6 +145,7 @@ class ChatClient {
     }
   }
 
+  // For the MapLibre GL globe
   updateMap(coordinates) {
     // This function will be called when the map is ready
     if (window.mapInstance) {
@@ -152,7 +153,7 @@ class ChatClient {
         window.mapInstance.flyTo({
           center: [coordinates.longitude, coordinates.latitude],
           essential: true,
-          zoom: 10,
+          zoom: 3,
         });
       } catch (error) {
         console.error('Failed to update map:', error);
