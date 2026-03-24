@@ -82,7 +82,8 @@ class ChatClient {
       const messageDiv = document.createElement('div');
       messageDiv.style.marginTop = '10px';
       messageDiv.style.padding = '8px';
-      messageDiv.style.backgroundColor = '#e3f2fd';
+      messageDiv.style.backgroundColor = 'rgb(67, 67, 67)';
+      messageDiv.style.color = 'rgb(255, 255, 255)';
       messageDiv.style.borderRadius = '4px';
       messageDiv.innerHTML = `<strong>You:</strong> ${this.escapeHtml(message)}`;
       chatbox.parentNode.insertBefore(messageDiv, chatbox.nextSibling);
@@ -96,7 +97,8 @@ class ChatClient {
     const responsesDiv = document.createElement('div');
     responsesDiv.style.marginTop = '15px';
     responsesDiv.style.padding = '10px';
-    responsesDiv.style.backgroundColor = '#f5f5f5';
+    responsesDiv.style.backgroundColor = 'rgb(67, 67, 67)';
+    responsesDiv.style.color = 'rgb(255, 255, 255)';
     responsesDiv.style.borderRadius = '4px';
     responsesDiv.style.fontSize = '14px';
 
