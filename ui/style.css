@@ -8,7 +8,6 @@ body {
     width: 30em;
     height: 5em;
     position: relative;
-    left: 5%;
     background: rgb(41, 41, 41);
     color: rgb(255, 255, 255);
     border-radius: 8px;
@@ -39,7 +38,6 @@ body {
     width: 30em;
     height: 30em;
     position: relative;
-    left: 5%;
     background: rgb(41, 41, 41);
     color: rgb(255, 255, 255);
     border-radius: 8px;
