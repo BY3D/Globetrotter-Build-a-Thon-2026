@@ -104,8 +104,8 @@ class ChatClient {
 
     let html = '';
 
-    if (data.parser) {
-      html += `<div><strong>🔍 Parser:</strong> ${this.escapeHtml(data.parser)}</div>`;
+    if (data.attendant) {
+      html += `<div><strong>🔍 Attendant:</strong> ${this.escapeHtml(data.attendant)}</div>`;
     }
 
     if (data.locator) {
@@ -115,7 +115,7 @@ class ChatClient {
     if (data.researcher) {
       html += `<div style="margin-top: 8px;"><strong>📚 Researcher:</strong> ${this.escapeHtml(data.researcher)}</div>`;
     }
-
+    /*
     if (data.describer) {
       html += `<div style="margin-top: 8px;"><strong>✍️ Describer:</strong> ${this.escapeHtml(data.describer)}</div>`;
     }
@@ -123,6 +123,7 @@ class ChatClient {
     if (data.editor) {
       html += `<div style="margin-top: 8px;"><strong>✅ Editor:</strong> ${this.escapeHtml(data.editor)}</div>`;
     }
+    */
 
     responsesDiv.innerHTML = html;
     chatbox.parentNode.insertBefore(responsesDiv, chatbox.nextSibling);
