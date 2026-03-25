@@ -51,6 +51,7 @@ body {
     overflow-y: auto;
     grid-column: 1;
     grid-row: 3;
+    visibility: hidden;
 }
 
 #MapLibre {
@@ -62,9 +63,10 @@ body {
 }
 
 #MapTiler {
-    width: 100%;
-    height: 400px;
+    width: 30em;
+    height: 30em;
     grid-column: 2;
     grid-row: 1;
     border-radius: 8px;
+    visibility: hidden;
 }
