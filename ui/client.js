@@ -113,9 +113,11 @@ class ChatClient {
       html += `<div><strong>🔍 Attendant:</strong> ${this.escapeHtml(data.attendant)}</div>`;
     }
 
+    /*
     if (data.locator) {
       html += `<div style="margin-top: 8px;"><strong>📍 Locator:</strong> ${this.escapeHtml(data.locator)}</div>`;
     }
+    */
 
     if (data.researcher) {
       html += `<div style="margin-top: 8px;"><strong>📚 Researcher:</strong> ${this.escapeHtml(data.researcher)}</div>`;
