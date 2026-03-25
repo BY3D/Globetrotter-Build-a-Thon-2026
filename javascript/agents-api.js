@@ -106,28 +106,6 @@ async function initialise() {
             name: "Researcher",
         });
 
-        /*
-        agents.describer = new LLMAgent({
-            client: client,
-            modelId: model.id,
-            instructions: `You are a writer that writes factual disciplined descriptions 
-            of points of interest around the world. 
-            Only write up to 200 words for the description. 
-            Do not invent facts and do not write in point form.`,
-            name: "Describer",
-        });
-
-        agents.editor = new LLMAgent({
-            client: client,
-            modelId: model.id,
-            instructions: `You are a senior editor for descriptions. Review the description for clarity, 
-            grammar, and factual consistency with the research notes. 
-            Provide a brief editorial verdict: ACCEPT if the description is 
-            publication-ready, or REVISE with specific suggestions and if the description does not match a location on Earth.`,
-            name: "Editor",
-        });
-        */
-
         initialised = true;
         console.log("Agents initialised successfully!");
     } catch (error) {
@@ -162,25 +140,11 @@ async function processUserInput(userInput) {
         const researcherResult = await agents.researcher.respondTo(attendantText);
         const researcherText = researcherResult.text;
 
-        /*
-        // Step 4: Describer writes description
-        const describerResult = await agents.describer.respondTo(researcherResult);
-        const describerText = describerResult.text;
-
-        // Step 5: Editor reviews and gives verdict
-        const editorResult = await agents.editor.respondTo(describerResult);
-        const editorText = editorResult.text;
-        */
-
         return {
             attendant: attendantText,
             locator: locatorText,
             coordinates: coordinates,
             researcher: researcherText,
-            /*
-            describer: describerText,
-            editor: editorText,
-            */
         };
     } catch (error) {
         console.error("Error processing user input:", error);
