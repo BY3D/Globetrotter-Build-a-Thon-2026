@@ -87,7 +87,7 @@ class ChatClient {
       messageDiv.style.color = 'rgb(255, 255, 255)';
       messageDiv.style.borderRadius = '4px';
       messageDiv.innerHTML = `<strong>You:</strong> ${this.escapeHtml(message)}`;
-      LLMbox.style.visibility = 'visible';
+      LLMbox.style.opacity = 1;
       LLMbox.appendChild(messageDiv);
     }
   }
@@ -144,7 +144,7 @@ class ChatClient {
       errorDiv.style.borderRadius = '4px';
       errorDiv.style.color = 'rgb(255, 255, 255)';
       errorDiv.innerHTML = `<strong>⚠️ Error:</strong> ${this.escapeHtml(message)}`;
-      LLMbox.style.visibility = 'visible';
+      LLMbox.style.opacity = 1;
       LLMbox.appendChild(errorDiv);
     }
   }
@@ -152,7 +152,7 @@ class ChatClient {
   // For the MapLibre GL globe and MapTiler Map
   updateMap(coordinates) {
     const maptiler = document.getElementById('MapTiler');
-    maptiler.style.visibility = 'visible';
+    maptiler.style.opacity = 1;
     // This function will be called when the map is ready
     if (window.mapInstance) {
       try {
