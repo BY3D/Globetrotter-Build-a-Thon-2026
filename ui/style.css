@@ -51,3 +51,8 @@ body {
     position: relative;
     left: 60%;
 }
+
+#MapTiler {
+    width: 30em;
+    height: 30em;
+}
