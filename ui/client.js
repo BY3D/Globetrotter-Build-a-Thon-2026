@@ -86,6 +86,7 @@ class ChatClient {
       messageDiv.style.backgroundColor = 'rgb(67, 67, 67)';
       messageDiv.style.color = 'rgb(255, 255, 255)';
       messageDiv.style.borderRadius = '4px';
+      messageDiv.style.fontSize = '16px';
       messageDiv.innerHTML = `<strong>You:</strong> ${this.escapeHtml(message)}`;
       LLMbox.style.opacity = 1;
       // List latest message at the top of the chat box
@@ -105,7 +106,7 @@ class ChatClient {
     responsesDiv.style.backgroundColor = 'rgb(67, 67, 67)';
     responsesDiv.style.color = 'rgb(255, 255, 255)';
     responsesDiv.style.borderRadius = '4px';
-    responsesDiv.style.fontSize = '14px';
+    responsesDiv.style.fontSize = '16px';
 
     let html = '';
 
@@ -120,7 +121,7 @@ class ChatClient {
     */
 
     if (data.researcher) {
-      html += `<div style="margin-top: 8px;"><strong>Facts:</strong> ${this.escapeHtml(data.researcher)}</div>`;
+      html += `<div style="margin-top: 8px;"><strong>Facts</strong> ${this.escapeHtml(data.researcher)}</div>`;
     }
 
     responsesDiv.innerHTML = html;
