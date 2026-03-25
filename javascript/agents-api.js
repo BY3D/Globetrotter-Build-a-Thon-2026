@@ -75,7 +75,7 @@ async function initialise() {
             1. points of interest
             2. landmarks
             3. famous locations
-            Limit your response to 250 words.
+            Limit your response to 200 words.
             If you do not find in the user's message 
             a point of interest, famous location, or landmark,
             then ask the user to clarify what he or she said.
@@ -103,7 +103,7 @@ async function initialise() {
             instructions: `You are a researcher for points of interest. 
             Only list 6 facts about the point of interest, landmark, or famous location. 
             Do not invent facts.
-            At the end of each fact, put the newline character '\n'`,
+            Write a new line, then write each fact on a new line`,
             name: "Researcher",
         });
 
