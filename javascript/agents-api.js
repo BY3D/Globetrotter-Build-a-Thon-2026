@@ -92,15 +92,15 @@ async function initialise() {
             Do not say anything else. 
             If the geographic coordinates cannot be found, then say "IDK 🫠"
             Use the following template for formatting the coordinates: 
-            {"latitude": ##.####, "longitude": ##.####}`,
+            {"latitude": ##.######, "longitude": ##.######}`,
             name: "Locator",
         });
 
         agents.researcher = new LLMAgent({
             client: client,
             modelId: model.id,
-            instructions: `You are only a researcher for points of interest. 
-            List 6 facts about the point of interest, landmark, or famous location. 
+            instructions: `You are a researcher for points of interest. 
+            Only list 6 facts about the point of interest, landmark, or famous location. 
             Do not invent facts.`,
             name: "Researcher",
         });
@@ -148,7 +148,7 @@ async function processUserInput(userInput) {
         // Step 2: Locator gets coordinates
         const locatorResult = await agents.locator.respondTo(attendantText);
         const locatorText = locatorResult.text;
-        // Is using Phi-4-mini, then it will always return coordinates in lat-long form.
+        // If using Phi-4-mini, then it will always return coordinates in lat-long form.
         // Trying to have it return coordinates as long-lat is currently not possible.
         let coordinates = null;
         try {
