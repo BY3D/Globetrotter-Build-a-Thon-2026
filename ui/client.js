@@ -138,9 +138,9 @@ class ChatClient {
       const errorDiv = document.createElement('div');
       errorDiv.style.marginTop = '10px';
       errorDiv.style.padding = '8px';
-      errorDiv.style.backgroundColor = '#ffbdc7';
+      errorDiv.style.backgroundColor = 'rgb(244, 0, 0)';
       errorDiv.style.borderRadius = '4px';
-      errorDiv.style.color = '#c62828';
+      errorDiv.style.color = 'rgb(255, 255, 255)';
       errorDiv.innerHTML = `<strong>⚠️ Error:</strong> ${this.escapeHtml(message)}`;
       chatbox.parentNode.insertBefore(errorDiv, chatbox.nextSibling);
     }
