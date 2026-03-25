@@ -23,9 +23,11 @@
         const detailedMap = new maptilersdk.Map({
             container: 'MapTiler', // container's id or the HTML element to render the map
             style: "streets-v4",
-            center: [78.0419, 27.175], // starting position [lng, lat]
+            center: [31.1308, 29.9758], // starting position [lng, lat]
             zoom: 15, // starting zoom
         });
+        // Make MapTiler instance available to client.js
+        window.detailedMap = detailedMap;
     </script>
     <!-- -->
     <form id="chatbox">
@@ -38,7 +40,7 @@
         const mapInstance = new maplibregl.Map({
             container: 'MapLibre',
             style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
-            center: [0, 0], // starting position [longitude, latitude]
+            center: [31.1308, 29.9758], // starting position [longitude, latitude]
             zoom: 2 // starting zoom
         });
 
