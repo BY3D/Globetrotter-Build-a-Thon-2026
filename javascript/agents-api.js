@@ -102,7 +102,8 @@ async function initialise() {
             modelId: model.id,
             instructions: `You are a researcher for points of interest. 
             Only list 6 facts about the point of interest, landmark, or famous location. 
-            Do not invent facts.`,
+            Do not invent facts.
+            At the end of each fact, put the newline character '\n'`,
             name: "Researcher",
         });
 
