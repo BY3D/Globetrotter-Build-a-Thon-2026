@@ -1,11 +1,9 @@
 /**
  * This file defines the LLM agents for GlobeTrotter
  * These are the agents
- * Parser - parse user input
+ * Attendant - primary communicator with user
  * Locator - find coordinates of location user gave
  * Researcher - Return facts of user-given location
- * Describer - Rewrite researcher's facts into a cohesive description
- * Editor - Accept or revise the description
  */
 
 const { OpenAI } = require("openai");
@@ -69,7 +67,7 @@ async function initialise() {
         });
 
         // Step 4: Create the agents with their instructions
-        agents.parser = new LLMAgent({
+        agents.attendant = new LLMAgent({
             client: client,
             modelId: model.id,
             instructions: `You are an agent that only replies to a user's message if it is about the following:
@@ -82,7 +80,7 @@ async function initialise() {
             then ask the user to clarify what he or she said.
             Do not answer any other message.
             Never apologise.`,
-            name: "Parser",
+            name: "Attendant",
         });
 
         agents.locator = new LLMAgent({
@@ -107,6 +105,7 @@ async function initialise() {
             name: "Researcher",
         });
 
+        /*
         agents.describer = new LLMAgent({
             client: client,
             modelId: model.id,
@@ -126,6 +125,7 @@ async function initialise() {
             publication-ready, or REVISE with specific suggestions and if the description does not match a location on Earth.`,
             name: "Editor",
         });
+        */
 
         initialised = true;
         console.log("Agents initialised successfully!");
@@ -141,12 +141,12 @@ async function processUserInput(userInput) {
     }
 
     try {
-        // Step 1: Parser validates the input
-        const parserResult = await agents.parser.respondTo(userInput);
-        const parserText = parserResult.text;
+        // Step 1: Attendant responds to user
+        const attendantResult = await agents.attendant.respondTo(userInput);
+        const attendantText = attendantResult.text;
 
         // Step 2: Locator gets coordinates
-        const locatorResult = await agents.locator.respondTo(parserText);
+        const locatorResult = await agents.locator.respondTo(attendantText);
         const locatorText = locatorResult.text;
         // Is using Phi-4-mini, then it will always return coordinates in lat-long form.
         // Trying to have it return coordinates as long-lat is currently not possible.
@@ -158,9 +158,10 @@ async function processUserInput(userInput) {
         }
 
         // Step 3: Researcher gathers facts
-        const researcherResult = await agents.researcher.respondTo(parserText);
+        const researcherResult = await agents.researcher.respondTo(attendantText);
         const researcherText = researcherResult.text;
 
+        /*
         // Step 4: Describer writes description
         const describerResult = await agents.describer.respondTo(researcherResult);
         const describerText = describerResult.text;
@@ -168,14 +169,17 @@ async function processUserInput(userInput) {
         // Step 5: Editor reviews and gives verdict
         const editorResult = await agents.editor.respondTo(describerResult);
         const editorText = editorResult.text;
+        */
 
         return {
-            parser: parserText,
+            attendant: attendantText,
             locator: locatorText,
             coordinates: coordinates,
             researcher: researcherText,
+            /*
             describer: describerText,
             editor: editorText,
+            */
         };
     } catch (error) {
         console.error("Error processing user input:", error);
