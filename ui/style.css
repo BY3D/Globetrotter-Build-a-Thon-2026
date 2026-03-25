@@ -5,10 +5,13 @@ body {
 }
 
 #chatbox {
+    width: 30%;
+    height: 100px;
     background: rgb(41, 41, 41);
     color: rgb(255, 255, 255);
     border-radius: 8px;
     padding: 1.5rem;
+    overflow-y: auto;
 }
 
 #user-input {
@@ -31,8 +34,11 @@ body {
 }
 
 #LLMbox {
+    width: 30%;
+    height: 300px;
     background: rgb(41, 41, 41);
     color: rgb(255, 255, 255);
     border-radius: 8px;
     padding: 1.5rem;
+    overflow-y: auto;
 }
