@@ -78,6 +78,7 @@ class ChatClient {
 
   displayUserMessage(message) {
     const chatbox = document.getElementById('chatbox');
+    const LLMbox = document.getElementById('LLmBox');
     if (chatbox) {
       const messageDiv = document.createElement('div');
       messageDiv.style.marginTop = '10px';

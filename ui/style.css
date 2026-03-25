@@ -1,10 +1,12 @@
 body {
     background-color: rgb(0, 12, 46);
+    color: rgb(255, 255, 255);
     font-family: sans-serif;
 }
 
 #chatbox {
     background: rgb(41, 41, 41);
+    color: rgb(255, 255, 255);
     border-radius: 8px;
     padding: 1.5rem;
 }
@@ -30,6 +32,7 @@ body {
 
 #LLMbox {
     background: rgb(41, 41, 41);
+    color: rgb(255, 255, 255);
     border-radius: 8px;
     padding: 1.5rem;
 }
