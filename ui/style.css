@@ -5,8 +5,10 @@ body {
 }
 
 #chatbox {
-    width: 30%;
-    height: 100px;
+    width: 30em;
+    height: 5em;
+    position: relative;
+    left: 5%;
     background: rgb(41, 41, 41);
     color: rgb(255, 255, 255);
     border-radius: 8px;
@@ -34,11 +36,20 @@ body {
 }
 
 #LLMbox {
-    width: 30%;
-    height: 300px;
+    width: 30em;
+    height: 30em;
+    position: relative;
+    left: 5%;
     background: rgb(41, 41, 41);
     color: rgb(255, 255, 255);
     border-radius: 8px;
     padding: 1.5rem;
     overflow-y: auto;
+}
+
+#MapLibre {
+    width: 700px;
+    height: 600px;
+    position: relative;
+    left: 60%;
 }
