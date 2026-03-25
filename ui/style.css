@@ -5,6 +5,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
+    justify-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
     /*min-height: 100vh;*/
@@ -55,12 +56,13 @@ body {
     overflow-y: auto;
     grid-column: 1;
     grid-row: 3;
-    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
 }
 
 #MapLibre {
-    width: 50%;
-    height: 100%;
+    width: 60%;
+    height: 110%;
     grid-column: 2;
     grid-row: 2 / 4;
     border-radius: 50%;
@@ -72,5 +74,6 @@ body {
     grid-column: 2;
     grid-row: 1;
     border-radius: 4%;
-    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
 }
