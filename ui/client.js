@@ -86,6 +86,7 @@ class ChatClient {
       messageDiv.style.color = 'rgb(255, 255, 255)';
       messageDiv.style.borderRadius = '4px';
       messageDiv.innerHTML = `<strong>You:</strong> ${this.escapeHtml(message)}`;
+      LLMbox.style.visibility = 'visible';
       LLMbox.appendChild(messageDiv);
     }
   }
@@ -142,6 +143,7 @@ class ChatClient {
       errorDiv.style.borderRadius = '4px';
       errorDiv.style.color = 'rgb(255, 255, 255)';
       errorDiv.innerHTML = `<strong>⚠️ Error:</strong> ${this.escapeHtml(message)}`;
+      LLMbox.style.visibility = 'visible';
       LLMbox.appendChild(errorDiv);
     }
   }
@@ -153,9 +155,9 @@ class ChatClient {
       try {
         window.mapInstance.flyTo({
           center: [
-            coordinates.longitude, 
+            coordinates.longitude,
             coordinates.latitude
-        ],
+          ],
           essential: true,
           zoom: 4,
         });
@@ -164,26 +166,26 @@ class ChatClient {
       }
     }
     if (window.markerInstance) {
-        try {
+      try {
         window.markerInstance
-        .setLngLat([coordinates.longitude, coordinates.latitude])
-        .addTo(mapInstance);
-        } catch (error) {
-            console.error('Failed to update map marker:', error);
-        }
+          .setLngLat([coordinates.longitude, coordinates.latitude])
+          .addTo(mapInstance);
+      } catch (error) {
+        console.error('Failed to update map marker:', error);
+      }
     }
     if (window.detailedMap) {
-        try {
-            window.detailedMap.jumpTo({
-                center:[
-                    coordinates.longitude, 
-                    coordinates.latitude
-                ],
-                zoom: 15
-            })
-        } catch (error) {
-            console.error('Failed to update MapTiler jump:', error);
-        }
+      try {
+        window.detailedMap.jumpTo({
+          center: [
+            coordinates.longitude,
+            coordinates.latitude
+          ],
+          zoom: 15
+        })
+      } catch (error) {
+        console.error('Failed to update MapTiler jump:', error);
+      }
     }
   }
 
