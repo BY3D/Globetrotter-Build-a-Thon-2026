@@ -146,7 +146,7 @@ class ChatClient {
     }
   }
 
-  // For the MapLibre GL globe
+  // For the MapLibre GL globe and MapTiler Map
   updateMap(coordinates) {
     // This function will be called when the map is ready
     if (window.mapInstance) {
@@ -166,10 +166,23 @@ class ChatClient {
     if (window.markerInstance) {
         try {
         window.markerInstance
-        .setLngLat([coordinates.longitude, coordinates.latitude]) // [longitude, latitude]
+        .setLngLat([coordinates.longitude, coordinates.latitude])
         .addTo(mapInstance);
         } catch (error) {
             console.error('Failed to update map marker:', error);
+        }
+    }
+    if (window.detailedMap) {
+        try {
+            window.detailedMap.jumpTo({
+                center:[
+                    coordinates.longitude, 
+                    coordinates.latitude
+                ],
+                zoom: 15
+            })
+        } catch (error) {
+            console.error('Failed to update MapTiler jump:', error);
         }
     }
   }
