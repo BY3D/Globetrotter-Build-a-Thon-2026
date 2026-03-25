@@ -77,9 +77,8 @@ class ChatClient {
   }
 
   displayUserMessage(message) {
-    const chatbox = document.getElementById('chatbox');
-    const LLMbox = document.getElementById('LLmBox');
-    if (chatbox) {
+    const LLMbox = document.getElementById('LLMbox');
+    if (LLMbox) {
       const messageDiv = document.createElement('div');
       messageDiv.style.marginTop = '10px';
       messageDiv.style.padding = '8px';
@@ -87,13 +86,13 @@ class ChatClient {
       messageDiv.style.color = 'rgb(255, 255, 255)';
       messageDiv.style.borderRadius = '4px';
       messageDiv.innerHTML = `<strong>You:</strong> ${this.escapeHtml(message)}`;
-      chatbox.parentNode.insertBefore(messageDiv, chatbox.nextSibling);
+      LLMbox.appendChild(messageDiv);
     }
   }
 
   displayAgentResponses(data) {
-    const chatbox = document.getElementById('chatbox');
-    if (!chatbox) return;
+    const LLMbox = document.getElementById('LLMbox');
+    if (!LLMbox) return;
 
     const responsesDiv = document.createElement('div');
     responsesDiv.style.marginTop = '15px';
@@ -127,15 +126,15 @@ class ChatClient {
     */
 
     responsesDiv.innerHTML = html;
-    chatbox.parentNode.insertBefore(responsesDiv, chatbox.nextSibling);
+    LLMbox.appendChild(responsesDiv);
 
     // Auto-scroll to latest response
     responsesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   displayError(message) {
-    const chatbox = document.getElementById('chatbox');
-    if (chatbox) {
+    const LLMbox = document.getElementById('LLMbox');
+    if (LLMbox) {
       const errorDiv = document.createElement('div');
       errorDiv.style.marginTop = '10px';
       errorDiv.style.padding = '8px';
@@ -143,7 +142,7 @@ class ChatClient {
       errorDiv.style.borderRadius = '4px';
       errorDiv.style.color = 'rgb(255, 255, 255)';
       errorDiv.innerHTML = `<strong>⚠️ Error:</strong> ${this.escapeHtml(message)}`;
-      chatbox.parentNode.insertBefore(errorDiv, chatbox.nextSibling);
+      LLMbox.appendChild(errorDiv);
     }
   }
 
