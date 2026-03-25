@@ -7,7 +7,6 @@ body {
 #chatbox {
     width: 30em;
     height: 5em;
-    position: relative;
     background: rgb(41, 41, 41);
     color: rgb(255, 255, 255);
     border-radius: 8px;
@@ -36,8 +35,7 @@ body {
 
 #LLMbox {
     width: 30em;
-    height: 30em;
-    position: relative;
+    height: 25em;
     background: rgb(41, 41, 41);
     color: rgb(255, 255, 255);
     border-radius: 8px;
@@ -49,11 +47,11 @@ body {
 #MapLibre {
     width: 700px;
     height: 600px;
-    position: relative;
-    left: 60%;
+    float: right;
 }
 
 #MapTiler {
     width: 30em;
     height: 30em;
+    visibility: hidden;
 }
