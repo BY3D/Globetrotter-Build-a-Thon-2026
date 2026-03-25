@@ -120,15 +120,6 @@ class ChatClient {
     if (data.researcher) {
       html += `<div style="margin-top: 8px;"><strong>📚 Researcher:</strong> ${this.escapeHtml(data.researcher)}</div>`;
     }
-    /*
-    if (data.describer) {
-      html += `<div style="margin-top: 8px;"><strong>✍️ Describer:</strong> ${this.escapeHtml(data.describer)}</div>`;
-    }
-
-    if (data.editor) {
-      html += `<div style="margin-top: 8px;"><strong>✅ Editor:</strong> ${this.escapeHtml(data.editor)}</div>`;
-    }
-    */
 
     responsesDiv.innerHTML = html;
     const userMessage = LLMbox.getElementsByTagName("div")[0];
