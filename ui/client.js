@@ -123,7 +123,7 @@ class ChatClient {
     */
 
     if (data.researcher) {
-      html += `<div style="margin-top: 8px;"><strong>Facts</strong> ${this.escapeHtml(data.researcher)}</div>`;
+      html += `<div style="margin-top: 8px;"><strong>Facts:</strong> ${this.escapeHtml(data.researcher)}</div>`;
     }
 
     responsesDiv.innerHTML = html;
