@@ -87,7 +87,7 @@ class ChatClient {
       messageDiv.style.color = 'rgb(255, 255, 255)';
       messageDiv.style.borderRadius = '4px';
       messageDiv.style.fontSize = '16px';
-      messageDiv.style.whiteSpace = 'pre';
+      messageDiv.style.whiteSpace = 'pre-wrap';
       messageDiv.innerHTML = `<strong>You:</strong> ${this.escapeHtml(message)}`;
       LLMbox.style.opacity = 1;
       // List latest message at the top of the chat box
