@@ -88,7 +88,10 @@ class ChatClient {
       messageDiv.style.borderRadius = '4px';
       messageDiv.innerHTML = `<strong>You:</strong> ${this.escapeHtml(message)}`;
       LLMbox.style.opacity = 1;
-      LLMbox.appendChild(messageDiv);
+      // List latest message at the top of the chat box
+      const lastMessage = LLMbox.getElementsByTagName("div")[0];
+      if (lastMessage) LLMbox.insertBefore(messageDiv, lastMessage);
+      else LLMbox.appendChild(messageDiv);
     }
   }
 
@@ -128,7 +131,9 @@ class ChatClient {
     */
 
     responsesDiv.innerHTML = html;
-    LLMbox.appendChild(responsesDiv);
+    const userMessage = LLMbox.getElementsByTagName("div")[0];
+    LLMbox.insertBefore(responsesDiv, userMessage);
+    //LLMbox.appendChild(responsesDiv);
 
     // Auto-scroll to latest response
     responsesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
