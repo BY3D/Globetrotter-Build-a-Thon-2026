@@ -75,5 +75,5 @@ body {
     grid-row: 1;
     border-radius: 4%;
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 2s;
 }
