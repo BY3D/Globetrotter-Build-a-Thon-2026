@@ -110,7 +110,7 @@ class ChatClient {
     let html = '';
 
     if (data.attendant) {
-      html += `<div><strong>🔍 Attendant:</strong> ${this.escapeHtml(data.attendant)}</div>`;
+      html += `<div><strong>Attendant:</strong> ${this.escapeHtml(data.attendant)}</div>`;
     }
 
     /*
@@ -120,7 +120,7 @@ class ChatClient {
     */
 
     if (data.researcher) {
-      html += `<div style="margin-top: 8px;"><strong>📚 Researcher:</strong> ${this.escapeHtml(data.researcher)}</div>`;
+      html += `<div style="margin-top: 8px;"><strong>Facts:</strong> ${this.escapeHtml(data.researcher)}</div>`;
     }
 
     responsesDiv.innerHTML = html;
