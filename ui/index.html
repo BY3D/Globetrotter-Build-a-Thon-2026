@@ -29,11 +29,14 @@
         // Make MapTiler instance available to client.js
         window.detailedMap = detailedMap;
     </script>
-    <!-- -->
+    <!-- User Input and LLM Output -->
     <form id="chatbox">
         <textarea id="user-input" placeholder="Welcome" required></textarea>
         <button id="generate-response" type="submit">←</button>
     </form>
+    <section id="LLMbox">
+        <p placeholder="The LLM will respond here"></p>
+    </section>
     <!-- MapLibre-GL Globe -->
     <div id='MapLibre' style='width: 700px; height: 600px;'></div>
     <script>
