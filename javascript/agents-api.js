@@ -101,7 +101,7 @@ async function initialise() {
             client: client,
             modelId: model.id,
             instructions: `You are a researcher for points of interest. 
-            Only list 6 facts about the point of interest, landmark, or famous location. 
+            Only list 4 facts about the point of interest, landmark, or famous location. 
             Do not invent facts.
             Write a new line, then write each fact on a new line`,
             name: "Researcher",
