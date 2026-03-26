@@ -164,6 +164,7 @@ class ChatClient {
   async clearChat() {
     const LLMbox = document.getElementById('LLMbox');
     console.log("Deleting chat history");
+    chatCleared = false;
     
     // Remove all chat-message divs from the UI
     const chatMessages = LLMbox.querySelectorAll('.chat-message');
@@ -179,12 +180,15 @@ class ChatClient {
       });
       if (response.ok) {
         console.log("Chat history cleared");
+        chatCleared = true;
       } else {
         console.error('Failed to clear chat history on server');
       }
     } catch (error) {
       console.error('Error clearing chat history:', error);
     }
+    // Hide the LLM chatbox section
+    if (chatCleared) LLMbox.style.opacity = 0;
   }
 
   // For the MapLibre GL globe and MapTiler Map
