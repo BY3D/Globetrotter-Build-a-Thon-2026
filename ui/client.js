@@ -105,6 +105,9 @@ class ChatClient {
     // Hide the welcome message
     const welcomeUser = document.getElementById('WelcomeUser');
     if (welcomeUser) welcomeUser.style.opacity = 0;
+    // Remove the placeholder text in the chatbox
+    const chatbox = document.getElementById('user-input')
+    if (chatbox) chatbox.removeAttribute('placeholder');
   }
 
   displayAgentResponses(data) {
@@ -164,7 +167,7 @@ class ChatClient {
   async clearChat() {
     const LLMbox = document.getElementById('LLMbox');
     console.log("Deleting chat history");
-    chatCleared = false;
+    let chatCleared = false;
     
     // Remove all chat-message divs from the UI
     const chatMessages = LLMbox.querySelectorAll('.chat-message');
