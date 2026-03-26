@@ -75,8 +75,8 @@ async function initialise() {
             1. points of interest
             2. landmarks
             3. famous locations
-            Limit your response to 70 words.
-            Only use metric units for measurements.
+            Limit your response to 6 sentences.
+            When reporting a measurement of any kind, use the metric system only.
             If you do not find in the user's message 
             a point of interest, famous location, or landmark,
             then ask the user to clarify what he or she said.
@@ -105,7 +105,7 @@ async function initialise() {
             instructions: `You are a researcher for points of interest. 
             Only list 4 facts about the point of interest, landmark, or famous location. 
             Do not invent facts.
-            Only use metric units for measurements.
+            When reporting a measurement of any kind, use the metric system only.
             Write a new line, then write each fact on a new line`,
             name: "Researcher",
         });
