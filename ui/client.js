@@ -15,8 +15,10 @@ class ChatClient {
     const chatForm = document.getElementById('chatbox');
     const userInput = document.getElementById('user-input');
     const generateButton = document.getElementById('generate-response');
+    const clearChatButton = document.getElementById('clear-chat');
 
     if (chatForm) {
+      // When a user submits his or her message
       chatForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const message = userInput.value.trim();
@@ -25,6 +27,7 @@ class ChatClient {
           userInput.value = '';
         }
       });
+      clearChatButton.addEventListener('click', clearChat());
     }
 
     // Check server health on load
@@ -152,6 +155,10 @@ class ChatClient {
       LLMbox.style.opacity = 1;
       LLMbox.appendChild(errorDiv);
     }
+  }
+
+  async clearChat() {
+    
   }
 
   // For the MapLibre GL globe and MapTiler Map
