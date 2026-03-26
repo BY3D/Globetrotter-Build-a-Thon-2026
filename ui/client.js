@@ -27,8 +27,9 @@ class ChatClient {
           userInput.value = '';
         }
       });
-      clearChatButton.addEventListener('click', this.clearChat());
     }
+
+    if (clearChatButton) clearChatButton.addEventListener('click', () => this.clearChat());
 
     // Check server health on load
     this.checkServerHealth();
@@ -162,13 +163,27 @@ class ChatClient {
 
   async clearChat() {
     const LLMbox = document.getElementById('LLMbox');
-    if (LLMbox.hasChildNodes()) {
-      console.log("Deleting chat history");
-      let childrenElements = LLMbox.childNodes();
-      for (const curElement of childrenElements) {
-        if (curElement.className === 'chat-message') curElement.remove();
+    console.log("Deleting chat history");
+    
+    // Remove all chat-message divs from the UI
+    const chatMessages = LLMbox.querySelectorAll('.chat-message');
+    chatMessages.forEach(msg => msg.remove());
+    
+    // Clear chat history on the backend
+    try {
+      const response = await fetch('http://localhost:8000/api/clear-chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.ok) {
+        console.log("Chat history cleared");
+      } else {
+        console.error('Failed to clear chat history on server');
       }
-      if (!childrenElements) console.log("Chat history deleted");
+    } catch (error) {
+      console.error('Error clearing chat history:', error);
     }
   }
 

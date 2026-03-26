@@ -156,7 +156,17 @@ async function processUserInput(userInput) {
     }
 }
 
+function clearChatHistory() {
+    for (const agentKey in agents) {
+        if (agents[agentKey] && agents[agentKey].history) {
+            agents[agentKey].history = [];
+        }
+    }
+    console.log("Chat history cleared for all agents");
+}
+
 module.exports = {
     initialize: initialise,
     processUserInput,
+    clearChatHistory,
 };

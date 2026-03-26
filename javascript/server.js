@@ -88,6 +88,20 @@ const requestListener = async (req, res) => {
     return;
   }
 
+  // API route: POST /api/clear-chat
+  if (pathname === '/api/clear-chat' && req.method === 'POST') {
+    try {
+      agentsAPI.clearChatHistory();
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ status: 'Chat history cleared' }));
+    } catch (error) {
+      console.error('Clear chat error:', error);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: error.message }));
+    }
+    return;
+  }
+
   // Static file serving
   let reqPath = pathname === '/' ? '/index.html' : pathname;
   
