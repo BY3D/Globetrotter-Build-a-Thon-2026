@@ -93,7 +93,8 @@ async function initialise() {
             Do not say anything else. 
             If the geographic coordinates cannot be found, then say "IDK 🫠"
             Use the following template for formatting the coordinates: 
-            {"latitude": ##.######, "longitude": ##.######}`,
+            {"latitude": ##.######, "longitude": ##.######}
+            Return the coordinates for one location only.`,
             name: "Locator",
         });
 
