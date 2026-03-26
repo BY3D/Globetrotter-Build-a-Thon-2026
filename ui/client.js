@@ -94,6 +94,8 @@ class ChatClient {
       const lastMessage = LLMbox.getElementsByTagName("div")[0];
       if (lastMessage) LLMbox.insertBefore(messageDiv, lastMessage);
       else LLMbox.appendChild(messageDiv);
+      // Auto-scroll to latest response
+      messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
     // Hide the welcome message
     const welcomeUser = document.getElementById('WelcomeUser');
