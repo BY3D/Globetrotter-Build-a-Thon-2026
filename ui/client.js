@@ -27,7 +27,7 @@ class ChatClient {
           userInput.value = '';
         }
       });
-      clearChatButton.addEventListener('click', clearChat());
+      clearChatButton.addEventListener('click', this.clearChat());
     }
 
     // Check server health on load
@@ -84,6 +84,7 @@ class ChatClient {
     const LLMbox = document.getElementById('LLMbox');
     if (LLMbox) {
       const messageDiv = document.createElement('div');
+      messageDiv.className = 'chat-message';
       messageDiv.style.marginTop = '10px';
       messageDiv.style.padding = '8px';
       messageDiv.style.backgroundColor = 'rgb(67, 67, 67)';
@@ -110,6 +111,7 @@ class ChatClient {
     if (!LLMbox) return;
 
     const responsesDiv = document.createElement('div');
+    responsesDiv.className = 'chat-message';
     responsesDiv.style.marginTop = '15px';
     responsesDiv.style.padding = '10px';
     responsesDiv.style.backgroundColor = 'rgb(67, 67, 67)';
@@ -146,6 +148,7 @@ class ChatClient {
     const LLMbox = document.getElementById('LLMbox');
     if (LLMbox) {
       const errorDiv = document.createElement('div');
+      errorDiv.className = 'chat-message';
       errorDiv.style.marginTop = '10px';
       errorDiv.style.padding = '8px';
       errorDiv.style.backgroundColor = 'rgb(244, 0, 0)';
@@ -158,7 +161,15 @@ class ChatClient {
   }
 
   async clearChat() {
-
+    const LLMbox = document.getElementById('LLMbox');
+    if (LLMbox.hasChildNodes()) {
+      console.log("Deleting chat history");
+      let childrenElements = LLMbox.childNodes();
+      for (const curElement of childrenElements) {
+        if (curElement.className === 'chat-message') curElement.remove();
+      }
+      if (!childrenElements) console.log("Chat history deleted");
+    }
   }
 
   // For the MapLibre GL globe and MapTiler Map
