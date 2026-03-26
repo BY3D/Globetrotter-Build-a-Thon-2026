@@ -75,7 +75,7 @@ async function initialise() {
             1. points of interest
             2. landmarks
             3. famous locations
-            Limit your response to 200 words.
+            Limit your response to 70 words.
             If you do not find in the user's message 
             a point of interest, famous location, or landmark,
             then ask the user to clarify what he or she said.
