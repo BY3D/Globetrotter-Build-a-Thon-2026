@@ -18,7 +18,9 @@
 <body>
     <div id="WelcomeUser">
         <h1>Welcome to<br><strong>GlobeTrotter</strong></h1>
+        <h2><em>Explore the Globe</em></h2>
     </div>
+
     <div id="MapTiler"></div>
     <script>
         // import { MAPTILER_KEY } from "../javascript/keys.js";
@@ -32,12 +34,16 @@
         // Make MapTiler instance available to client.js
         window.detailedMap = detailedMap;
     </script>
+
     <!-- User Input and LLM Output -->
     <form id="chatbox">
-        <textarea id="user-input" placeholder="Write your inquiry here" required></textarea>
+        <textarea id="user-input" placeholder='Welcome. Ask questions about landmarks around the world, like "Where is the Taj Mahal?"' required></textarea>
         <button id="generate-response" type="submit">←</button>
+        <button id="clear-chat" type="submit">Clear Chat</button>
     </form>
+
     <section id="LLMbox"></section>
+
     <!-- MapLibre-GL Globe -->
      <div id='MapLibre-Space'></div>
     <div id='MapLibre'></div>
@@ -61,7 +67,9 @@
         window.mapInstance = mapInstance;
         window.markerInstance = markerInstance;
     </script>
-    <script>
+
+    <!-- Wikimedia API -->
+    <script> 
         var url = "https://en.wikipedia.org/w/api.php";
 
         var params = {
