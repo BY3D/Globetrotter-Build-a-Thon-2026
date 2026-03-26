@@ -95,6 +95,9 @@ class ChatClient {
       if (lastMessage) LLMbox.insertBefore(messageDiv, lastMessage);
       else LLMbox.appendChild(messageDiv);
     }
+    // Hide the welcome message
+    const welcomeUser = document.getElementById('WelcomeUser');
+    if (welcomeUser) welcomeUser.style.opacity = 0;
   }
 
   displayAgentResponses(data) {
@@ -116,11 +119,10 @@ class ChatClient {
       html += `<div><strong>Attendant:</strong> ${this.escapeHtml(data.attendant)}</div>`;
     }
 
-    /*
     if (data.locator) {
-      html += `<div style="margin-top: 8px;"><strong>📍 Locator:</strong> ${this.escapeHtml(data.locator)}</div>`;
+      //html += `<div style="margin-top: 8px;"><strong>📍 Locator:</strong> ${this.escapeHtml(data.locator)}</div>`;
+      console.log(`Locator says: ${data.locator}`);
     }
-    */
 
     if (data.researcher) {
       html += `<div style="margin-top: 8px;"><strong>Facts:</strong> ${this.escapeHtml(data.researcher)}</div>`;
@@ -152,6 +154,10 @@ class ChatClient {
 
   // For the MapLibre GL globe and MapTiler Map
   updateMap(coordinates) {
+    // Remove the welcome message to make way for map elements
+    const welcomeUser = document.getElementById('WelcomeUser');
+    if (welcomeUser && welcomeUser.style.opacity == '0') welcomeUser.remove();
+
     const maptiler = document.getElementById('MapTiler');
     maptiler.style.opacity = 1;
     // This function will be called when the map is ready
