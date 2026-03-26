@@ -11,9 +11,17 @@ body {
     /*min-height: 100vh;*/
 }
 
+#WelcomeUser {
+    align-self: center;
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+    transition: 0.5s;
+}
+
 #chatbox {
     width: 60%;
-    height: 6rem;
+    height: 7rem;
     background: rgb(41, 41, 41);
     color: rgb(255, 255, 255);
     border-radius: 8px;
@@ -27,8 +35,9 @@ body {
     background: rgb(67, 67, 67);
     color: rgb(255, 255, 255);
     font-family: inherit;
+    font-size: 1.2rem;
     width: 90%;
-    height: 70%;
+    height: 60%;
 
 }
 
