@@ -26,7 +26,7 @@ body {
     color: rgb(255, 255, 255);
     border-radius: 8px;
     padding: 1.5rem;
-    overflow-y: auto;
+    overflow-y: hidden;
     grid-column: 1;
     grid-row: 2;
 }
@@ -78,6 +78,8 @@ body {
     grid-column: 2;
     grid-row: 1 / 4;
     border-radius: 50%;
+    justify-self: center;
+    align-self: center;
 }
 
 #MapLibre-Space {
@@ -87,6 +89,8 @@ body {
     grid-row: 1 / 4;
     overflow: hidden;
     background: radial-gradient(closest-side, rgb(216 242 255), rgb(0, 12, 46));
+    justify-self: center;
+    align-self: center;
 }
 
 #MapTiler {
