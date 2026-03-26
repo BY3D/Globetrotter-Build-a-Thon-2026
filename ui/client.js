@@ -130,7 +130,7 @@ class ChatClient {
     }
 
     if (data.researcher) {
-      html += `<div style="margin-top: 8px;"><strong>Facts:</strong> ${this.escapeHtml(data.researcher)}</div>`;
+      html += `<div style="margin-top: 8px;"><strong>Facts:</strong><br>${this.escapeHtml(data.researcher)}</div>`;
     }
 
     responsesDiv.innerHTML = html;
@@ -158,7 +158,7 @@ class ChatClient {
   }
 
   async clearChat() {
-    
+
   }
 
   // For the MapLibre GL globe and MapTiler Map
