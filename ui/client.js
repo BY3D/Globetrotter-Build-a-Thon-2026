@@ -74,7 +74,7 @@ class ChatClient {
       // Update map if coordinates are available
       if (data.coordinates && data.coordinates.longitude && data.coordinates.latitude) {
         this.updateMap(data.coordinates);
-        this.getWikiImage(data.coordinates);
+        this.displayWikiImage(data.coordinates);
       }
     } catch (error) {
       console.error('Failed to get response:', error);
@@ -250,7 +250,7 @@ class ChatClient {
     return div.innerHTML;
   }
 
-  // This function returns an image from WikiMedia of the location
+  // This function returns an image URL from Wikipedia of the location
   // More info on Wikipedia API: https://www.mediawiki.org/wiki/API:Geosearch
   async getWikiImage(coordinates) {
     const baseUrl = "https://en.wikipedia.org/w/api.php";
@@ -301,6 +301,16 @@ class ChatClient {
       console.log("Wikipedia image could not be obtained");
       console.log(error);
       return;
+    }
+    return { locationImage, locationTitle };
+  }
+
+  async displayWikiImage(coordinates) {
+    const { locationImage, locationTitle } = await this.getWikiImage(coordinates);
+    const wikiImage = document.getElementById("Wikipedia-Image");
+    if (wikiImage) {
+      wikiImage.setAttribute("src", locationImage);
+      wikiImage.setAttribute("alt", locationTitle);
     }
   }
 
