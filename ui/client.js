@@ -254,7 +254,7 @@ class ChatClient {
   // More info on Wikipedia API: https://www.mediawiki.org/wiki/API:Geosearch
   async getWikiImage(coordinates) {
     let wikiUrl = "https://en.wikipedia.org/w/api.php";
-    const params = {
+    let params = {
       action: "query",
       list: "geosearch",
       gscoord: coordinates.latitude + "|" + coordinates.longitude,
@@ -263,34 +263,42 @@ class ChatClient {
       gslimit: 1,
       format: "json"
     };
+    let locationTitle;
+    let locationImage;
 
-    wikiUrl = wikiUrl + "?origin=*";
-    Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
-
+    // First, get the Wikipedia title of the location
     try {
+      wikiUrl = wikiUrl + "?origin=*";
+      Object.keys(params).forEach(function (key) { wikiUrl += "&" + key + "=" + params[key]; });
+      console.log(wikiUrl);
       let response = await fetch(wikiUrl);
       let data = await response.json();
-      this.locationTitle = data.query.geosearch[0].title;
-      this.locationTitle = this.locationTitle.trim().replaceAll(" ", "_");
-      
-      // Now use it for the second API call
-      const imageParams = {
-        action: "query",
-        titles: this.locationTitle,
-        prop: "pageimages",
-        pitthumbsize: 300,
-        format: "json"
-      };
-      wikiUrl = wikiUrl + "?origin=*";
-      Object.keys(imageParams).forEach(function (key) { url += "&" + key + "=" + imageParams[key]; });
-      fetch(url)
-        .then(function (response) { return response.json(); })
-        .then(function (response) {
-          console.log(response);
-          this.locationTitle = page[0].title;
-        })
-        .catch(function (error) { console.log(error); });
+      console.log(data);
+      locationTitle = data.query.geosearch[0].title;
+      locationTitle = locationTitle.trim().replaceAll(" ", "_");
     } catch (error) {
+      console.log("Wikipedia title could not be obtained");
+      console.log(error);
+      return;
+    }
+
+    // Second, get the thumbnail image of the location
+    params = {
+      action: "query",
+      titles: locationTitle,
+      prop: "pageimages",
+      pitthumbsize: 300,
+      format: "json"
+    };
+    wikiUrl = wikiUrl + "?origin=*";
+    Object.keys(params).forEach(function (key) { wikiUrl += "&" + key + "=" + imageParams[key]; });
+    try {
+      response = await fetch(wikiUrl);
+      data = await response.json();
+      locationImage = data.query.pages[0].thumbnail.source;
+      console.log("Image " + locationImage);
+    } catch (error) {
+      console.log("Wikipedia image could not be obtained");
       console.log(error);
     }
   }
