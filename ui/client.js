@@ -250,10 +250,10 @@ class ChatClient {
   }
 
   // This function returns an image from WikiMedia of the location
+  // More info on Wikipedia API: https://www.mediawiki.org/wiki/API:Geosearch
   getWikiImage(coordinates) {
     // By default, use English Wikipedia for search
     // Wikipedia in other languages can be used
-    // Example GET request: api.php?action=query&list=geosearch&gscoord=37.7891838|-122.4033522&gsradius=10000&gslimit=100
     let wikiUrl = "https://en.wikipedia.org/w/api.php";
     const params = {
       action: "query",
@@ -268,17 +268,37 @@ class ChatClient {
     wikiUrl = wikiUrl + "?origin=*";
     Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
 
+    // Example GET request: api.php?action=query&list=geosearch&gscoord=37.7891838|-122.4033522&gsradius=10000&gslimit=100
+    let locationTitle;
     fetch(url)
       .then(function (response) { return response.json(); })
       .then(function (response) {
-        let pages = response.query.pages;
-        for (var page in pages) {
-          console.log("Title: " + pages[page].title);
-          console.log("Latitute: " + pages[page].coordinates[0].lat);
-          console.log("Longitude: " + pages[page].coordinates[0].lon);
-        }
+        let page = response.query.geosearch;
+        locationTitle = page[0].title;
       })
       .catch(function (error) { console.log(error); });
+    locationTitle = locationTitle.trim();
+    locationTitle = locationTitle.replaceAll(" ", "_");
+
+    wikiUrl = "https://en.wikipedia.org/w/api.php";
+    params = {
+      action: "query",
+      titles: locationTitle,
+      prop: "pageimages",
+      pitthumbsize: 300,
+      format: "json"
+    }
+
+    wikiUrl = wikiUrl + "?origin=*";
+    Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
+    fetch(url)
+      .then(function (response) { return response.json(); })
+      .then(function (response) {
+        console.log(response);
+        locationTitle = page[0].title;
+      })
+      .catch(function (error) { console.log(error); });
+    //?action=query&titles=Eiffel_Tower&prop=pageimages&format=json&pithumbsize=250
   }
 
   // This function creates the starry background
