@@ -74,7 +74,7 @@ class ChatClient {
       // Update map if coordinates are available
       if (data.coordinates && data.coordinates.longitude && data.coordinates.latitude) {
         this.updateMap(data.coordinates);
-        this.displayWikiImage(data.coordinates);
+        // this.displayWikiImage(data.coordinates);
       }
     } catch (error) {
       console.error('Failed to get response:', error);
