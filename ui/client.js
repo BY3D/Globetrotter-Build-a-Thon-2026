@@ -291,7 +291,7 @@ class ChatClient {
       format: "json"
     };
     wikiUrl = wikiUrl + "?origin=*";
-    Object.keys(params).forEach(function (key) { wikiUrl += "&" + key + "=" + imageParams[key]; });
+    Object.keys(params).forEach(function (key) { wikiUrl += "&" + key + "=" + params[key]; });
     try {
       response = await fetch(wikiUrl);
       data = await response.json();
