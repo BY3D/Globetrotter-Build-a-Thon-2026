@@ -5,6 +5,7 @@ Software Requirements:
 Node JS
 Microsoft Foundry Local
 Visual Studio Code
+npm
 
 Hardware Requirements:
 +16 GB of system memory
