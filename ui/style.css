@@ -103,3 +103,11 @@ body {
     opacity: 0;
     transition: opacity 2s;
 }
+
+/* Originally generated with https://css-generators.com/starburst-shape/ */
+.star {
+  width: 20px; /* adjust to control the size */
+  aspect-ratio: 1;
+  background-color: rgb(255, 255, 255);
+  clip-path: polygon(100% 50%,66.18% 61.76%,65.45% 97.55%,43.82% 69.02%,9.55% 79.39%,30% 50%,9.55% 20.61%,43.82% 30.98%,65.45% 2.45%,66.18% 38.24%);
+}
