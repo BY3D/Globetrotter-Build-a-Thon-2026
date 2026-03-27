@@ -31,7 +31,7 @@ class ChatClient {
     }
 
     if (clearChatButton) clearChatButton.addEventListener('click', () => this.clearChat());
-    if (starBackground) this.createStars(starBackground);
+    //if (starBackground) this.createStars(starBackground);
 
     // Check server health on load
     this.checkServerHealth();
@@ -252,17 +252,17 @@ class ChatClient {
   // This function creates the starry background
   createStars(starContainer) {
     if (!starContainer) return;
-    const numOfStars = 50;
+    const numOfStars = 20;
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-    const excludeWidth = screenWidth * 0.25; // Exclude left 25% of screen width
-    const excludeHeight = screenHeight * 0.25; // Exclude top 25% of screen height
+    const excludeWidth = screenWidth * 0.35; // Exclude left 35% of screen width
+    const excludeHeight = screenHeight * 0.40; // Exclude top 40% of screen height
     
     for (let i = 0; i < numOfStars; i++) {
       const starElement = document.createElement('div');
       starElement.className = 'star';
       
-      // Generate random position
+      // Create random position
       let posX = Math.random() * screenWidth;
       let posY = Math.random() * screenHeight;
       
