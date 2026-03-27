@@ -270,10 +270,8 @@ class ChatClient {
     try {
       wikiUrl = wikiUrl + "?origin=*";
       Object.keys(params).forEach(function (key) { wikiUrl += "&" + key + "=" + params[key]; });
-      console.log(wikiUrl);
       let response = await fetch(wikiUrl);
       let data = await response.json();
-      console.log(data);
       locationTitle = data.query.geosearch[0].title;
       locationTitle = locationTitle.trim().replaceAll(" ", "_");
     } catch (error) {
