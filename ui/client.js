@@ -175,7 +175,7 @@ class ChatClient {
     const chatMessages = LLMbox.querySelectorAll('.chat-message');
     chatMessages.forEach(msg => msg.remove());
     
-    // Clear chat history on the backend
+    // Clear chat history of LLM agents
     try {
       const response = await fetch('http://localhost:8000/api/clear-chat', {
         method: 'POST',
@@ -249,7 +249,13 @@ class ChatClient {
     return div.innerHTML;
   }
 
+  // This function returns an image from WikiMedia of the location
+  getWikipediaImage(coordinates) {
+    const wikipediaUrl = 
+  }
+
   // This function creates the starry background
+  // It's unused because I dislike how it looks
   createStars(starContainer) {
     if (!starContainer) return;
     const numOfStars = 20;
