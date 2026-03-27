@@ -250,6 +250,7 @@ class ChatClient {
     return div.innerHTML;
   }
 
+  /*
   // This function returns an image URL from Wikipedia of the location
   // More info on Wikipedia API: https://www.mediawiki.org/wiki/API:Geosearch
   async getWikiImage(coordinates) {
@@ -305,6 +306,9 @@ class ChatClient {
     return { locationImage, locationTitle };
   }
 
+  // This function displays the Wikipedia thumbnail image of a location
+  // It's unused because the images cheapened the appearence of GlobeTrotter
+  // or the images were irrelevant to the location
   async displayWikiImage(coordinates) {
     const { locationImage, locationTitle } = await this.getWikiImage(coordinates);
     const wikiImage = document.getElementById("Wikipedia-Image");
@@ -347,6 +351,7 @@ class ChatClient {
       starContainer.append(starElement);
     }
   }
+  */
 }
 
 // Initialize chat client when DOM is ready
