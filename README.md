@@ -6,6 +6,7 @@ Node JS
 Microsoft Foundry Local
 Visual Studio Code
 npm
+MapTiler API key
 
 Hardware Requirements:
 +16 GB of system memory
