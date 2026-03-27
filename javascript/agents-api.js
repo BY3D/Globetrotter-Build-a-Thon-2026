@@ -75,6 +75,7 @@ async function initialise() {
             1. points of interest
             2. landmarks
             3. famous locations
+            4. locations in fictional stories that are real
             Limit your response to 6 sentences.
             When reporting a measurement of any kind, use the metric system only.
             If you do not find in the user's message 
@@ -89,13 +90,13 @@ async function initialise() {
             client: client,
             modelId: model.id,
             instructions: `You are an agent that ONLY returns geographic coordinates of points of interest. 
-            If the message contains the name of a location, 
-            Then ONLY return its geographic coordinates in JSON format. 
-            Do not say anything else. 
-            If the geographic coordinates cannot be found, then say "IDK 🫠"
+            If the message contains the name of a location,  
+            then ONLY return its geographic coordinates in JSON format. 
             Use the following template for formatting the coordinates: 
             {"latitude": ##.######, "longitude": ##.######}
-            Return the coordinates for one location only.`,
+            Return the coordinates for one location only.
+            If the geographic coordinates cannot be found, then say "IDK 🫠"
+            Do not say anything else.`,
             name: "Locator",
         });
 
