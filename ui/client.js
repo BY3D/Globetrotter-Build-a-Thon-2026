@@ -253,7 +253,8 @@ class ChatClient {
   // This function returns an image from WikiMedia of the location
   // More info on Wikipedia API: https://www.mediawiki.org/wiki/API:Geosearch
   async getWikiImage(coordinates) {
-    let wikiUrl = "https://en.wikipedia.org/w/api.php";
+    const baseUrl = "https://en.wikipedia.org/w/api.php";
+    let wikiUrl = baseUrl;
     let params = {
       action: "query",
       list: "geosearch",
@@ -264,6 +265,7 @@ class ChatClient {
       format: "json"
     };
     let locationTitle;
+    let locationPageId;
     let locationImage;
 
     // First, get the Wikipedia title of the location
@@ -272,6 +274,7 @@ class ChatClient {
       Object.keys(params).forEach(function (key) { wikiUrl += "&" + key + "=" + params[key]; });
       let response = await fetch(wikiUrl);
       let data = await response.json();
+      locationPageId = data.query.geosearch[0].pageid.toString();
       locationTitle = data.query.geosearch[0].title;
       locationTitle = locationTitle.trim().replaceAll(" ", "_");
     } catch (error) {
@@ -285,19 +288,19 @@ class ChatClient {
       action: "query",
       titles: locationTitle,
       prop: "pageimages",
-      pitthumbsize: 300,
+      pithumbsize: 300,
       format: "json"
     };
-    wikiUrl = wikiUrl + "?origin=*";
+    wikiUrl = baseUrl + "?origin=*";
     Object.keys(params).forEach(function (key) { wikiUrl += "&" + key + "=" + params[key]; });
     try {
-      response = await fetch(wikiUrl);
-      data = await response.json();
-      locationImage = data.query.pages[0].thumbnail.source;
-      console.log("Image " + locationImage);
+      let response = await fetch(wikiUrl);
+      let data = await response.json();
+      locationImage = data.query.pages[locationPageId].thumbnail.source;
     } catch (error) {
       console.log("Wikipedia image could not be obtained");
       console.log(error);
+      return;
     }
   }
 
