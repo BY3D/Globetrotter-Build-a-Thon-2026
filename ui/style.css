@@ -1,3 +1,5 @@
+
+
 body {
     background: rgb(0, 12, 46);
     color: rgb(255, 255, 255);
@@ -17,6 +19,10 @@ body {
     grid-row: 1;
     text-align: center;
     transition: 0.5s;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
     font-size: 1.5rem;
     z-index: 2;
 }
@@ -111,21 +117,22 @@ body {
 }
 
 #star-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* Originally generated with https://css-generators.com/starburst-shape/ */
 .star {
-  position: absolute;
-  width: 0.9rem; /* adjust to control the size */
-  aspect-ratio: 1;
-  background-color: rgb(255, 255, 255);
-  clip-path: polygon(97.74% 64.85%,64.95% 70.04%,50.63% 100%,35.56% 70.41%,2.65% 66.05%,26.13% 42.57%,20.1% 9.92%,49.69% 25%,78.88% 9.18%,73.68% 41.98%);
-  z-index: 1;
+    position: absolute;
+    width: 0.9rem;
+    /* adjust to control the size */
+    aspect-ratio: 1;
+    background-color: rgb(255, 255, 255);
+    clip-path: polygon(97.74% 64.85%, 64.95% 70.04%, 50.63% 100%, 35.56% 70.41%, 2.65% 66.05%, 26.13% 42.57%, 20.1% 9.92%, 49.69% 25%, 78.88% 9.18%, 73.68% 41.98%);
+    z-index: 1;
 }

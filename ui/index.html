@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!-- Scripts and CSS Stylesheets for MapTiler, MapLibre, and Google Font -->
     <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
     <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v3.10.2/maptiler-sdk.umd.min.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.10.2/maptiler-sdk.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital@0;1&display=swap" rel="stylesheet">
 
+    <!-- Local Script and CSS Stylesheet -->
     <script src="client.js"></script>
     <link href="style.css" rel="stylesheet">
     <title>Globetrotter</title>
@@ -37,7 +41,9 @@
 
     <!-- User Input and LLM Output -->
     <form id="chatbox">
-        <textarea id="user-input" placeholder='Welcome. Ask questions about landmarks around the world, like "Are there pyramids in Mexico?" or "Where is the Taj Mahal?"' required></textarea>
+        <textarea id="user-input"
+            placeholder='Welcome. Ask questions about landmarks around the world, like "Are there pyramids in Mexico?" or "Where is the Taj Mahal?"'
+            required></textarea>
         <button id="clear-chat" class="input-button" type="button">Clear Chat</button>
         <button id="generate-response" class="input-button" type="submit">←</button>
     </form>
@@ -45,7 +51,7 @@
     <section id="LLMbox"></section>
 
     <!-- MapLibre-GL Globe -->
-     <div id='MapLibre-Space'></div>
+    <div id='MapLibre-Space'></div>
     <div id='MapLibre'></div>
     <script>
         const mapInstance = new maplibregl.Map({
@@ -69,7 +75,7 @@
     </script>
 
     <!-- Wikimedia API -->
-    <script> 
+    <script>
         var url = "https://en.wikipedia.org/w/api.php";
 
         var params = {
