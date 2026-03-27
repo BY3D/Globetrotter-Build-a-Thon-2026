@@ -16,6 +16,7 @@ class ChatClient {
     const userInput = document.getElementById('user-input');
     const generateButton = document.getElementById('generate-response');
     const clearChatButton = document.getElementById('clear-chat');
+    const starBackground = document.getElementById('star-background');
 
     if (chatForm) {
       // When a user submits his or her message
@@ -30,6 +31,7 @@ class ChatClient {
     }
 
     if (clearChatButton) clearChatButton.addEventListener('click', () => this.clearChat());
+    if (starBackground) this.createStars(starBackground);
 
     // Check server health on load
     this.checkServerHealth();
@@ -245,6 +247,39 @@ class ChatClient {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+  }
+
+  // This function creates the starry background
+  createStars(starContainer) {
+    if (!starContainer) return;
+    const numOfStars = 50;
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const excludeWidth = screenWidth * 0.25; // Exclude left 25% of screen width
+    const excludeHeight = screenHeight * 0.25; // Exclude top 25% of screen height
+    
+    for (let i = 0; i < numOfStars; i++) {
+      const starElement = document.createElement('div');
+      starElement.className = 'star';
+      
+      // Generate random position
+      let posX = Math.random() * screenWidth;
+      let posY = Math.random() * screenHeight;
+      
+      // Exclude top-left corner
+      if (posX < excludeWidth && posY < excludeHeight) {
+        // If star lands in excluded zone, place it elsewhere
+        if (Math.random() > 0.5) {
+          posX = excludeWidth + Math.random() * (screenWidth - excludeWidth);
+        } else {
+          posY = excludeHeight + Math.random() * (screenHeight - excludeHeight);
+        }
+      }
+      
+      starElement.style.left = posX + 'px';
+      starElement.style.top = posY + 'px';
+      starContainer.append(starElement);
+    }
   }
 }
 
