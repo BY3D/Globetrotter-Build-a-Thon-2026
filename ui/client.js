@@ -170,11 +170,11 @@ class ChatClient {
     const LLMbox = document.getElementById('LLMbox');
     console.log("Deleting chat history");
     let chatCleared = false;
-    
+
     // Remove all chat-message divs from the UI
     const chatMessages = LLMbox.querySelectorAll('.chat-message');
     chatMessages.forEach(msg => msg.remove());
-    
+
     // Clear chat history of LLM agents
     try {
       const response = await fetch('http://localhost:8000/api/clear-chat', {
@@ -250,8 +250,35 @@ class ChatClient {
   }
 
   // This function returns an image from WikiMedia of the location
-  getWikipediaImage(coordinates) {
-    const wikipediaUrl = 
+  getWikiImage(coordinates) {
+    // By default, use English Wikipedia for search
+    // Wikipedia in other languages can be used
+    // Example GET request: api.php?action=query&list=geosearch&gscoord=37.7891838|-122.4033522&gsradius=10000&gslimit=100
+    let wikiUrl = "https://en.wikipedia.org/w/api.php";
+    const params = {
+      action: "query",
+      list: "geosearch",
+      gscoord: coordinates.latitude + "|" + coordinates.longitude,
+      gsradius: 10000,
+      gssort: "distance",
+      gslimit: 1,
+      format: "json"
+    };
+
+    wikiUrl = wikiUrl + "?origin=*";
+    Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
+
+    fetch(url)
+      .then(function (response) { return response.json(); })
+      .then(function (response) {
+        let pages = response.query.pages;
+        for (var page in pages) {
+          console.log("Title: " + pages[page].title);
+          console.log("Latitute: " + pages[page].coordinates[0].lat);
+          console.log("Longitude: " + pages[page].coordinates[0].lon);
+        }
+      })
+      .catch(function (error) { console.log(error); });
   }
 
   // This function creates the starry background
@@ -263,15 +290,15 @@ class ChatClient {
     const screenHeight = window.innerHeight;
     const excludeWidth = screenWidth * 0.35; // Exclude left 35% of screen width
     const excludeHeight = screenHeight * 0.40; // Exclude top 40% of screen height
-    
+
     for (let i = 0; i < numOfStars; i++) {
       const starElement = document.createElement('div');
       starElement.className = 'star';
-      
+
       // Create random position
       let posX = Math.random() * screenWidth;
       let posY = Math.random() * screenHeight;
-      
+
       // Exclude top-left corner
       if (posX < excludeWidth && posY < excludeHeight) {
         // If star lands in excluded zone, place it elsewhere
@@ -281,7 +308,7 @@ class ChatClient {
           posY = excludeHeight + Math.random() * (screenHeight - excludeHeight);
         }
       }
-      
+
       starElement.style.left = posX + 'px';
       starElement.style.top = posY + 'px';
       starContainer.append(starElement);
