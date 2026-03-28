@@ -1,4 +1,4 @@
-# Globetrotter-Build-a-Thon-2026
+# Globetrotter -Microsoft Reactor JavaScript AI Build-a-Thon 2026
 A fun, LLM-powered way to discover landmarks on a globe
 
 ### Software Requirements:
