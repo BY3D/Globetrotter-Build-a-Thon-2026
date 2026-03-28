@@ -1,6 +1,8 @@
 # GlobeTrotter - Microsoft Reactor JavaScript AI Build-a-Thon 2026
 A fun, LLM-powered way to discover landmarks on a globe
 
+![GlobeTrotter-Main](https://github.com/user-attachments/assets/6c7a9bd5-4f80-49f1-b223-c8c133d1dbb3)
+
 ### Software Requirements:
 - [Node JS](https://nodejs.org/)
 - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
@@ -34,4 +36,4 @@ A fun, LLM-powered way to discover landmarks on a globe
 > In `client.js` there are commented-out functions that display an image of a location from Wikipedia.
 > The idea was to show a picture of a given landmark next to the MapTiler map on GlobeTrotter
 > However, the Wikipedia pictures didn't match the aesthetic.
-> If you want to try it, uncomment the code and add an image element with id='Wikipedia-Image' in `index.html`
+> If you want to try it, uncomment the code and add an image element with `id='Wikipedia-Image'` in `index.html`
