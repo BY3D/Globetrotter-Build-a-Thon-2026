@@ -89,6 +89,7 @@ const requestListener = async (req, res) => {
   }
 
   // API route: GET /api/config
+  // This block gets the MapTiler API key
   if (pathname === '/api/config' && req.method === 'GET') {
     try {
       const { MAPTILER_KEY } = require('./keys.js');
