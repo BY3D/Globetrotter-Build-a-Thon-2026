@@ -2,6 +2,11 @@
 __pycache__/
 *.py[codz]
 *$py.class
+.DS_Store
+Thumbs.db
+*.log
+*.lock
+*.tmp
 
 /images
 /javascript/keys.js
@@ -12,6 +17,7 @@ __pycache__/
 # Node.js Files
 .ntvs_analysis.dat
 /node_modules
+/node_modules/*
 .package-lock.json
 /node_modules/.package-lock.json
 
