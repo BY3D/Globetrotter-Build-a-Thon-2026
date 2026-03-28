@@ -14,9 +14,9 @@ class ChatClient {
   setupUI() {
     const chatForm = document.getElementById('chatbox');
     const userInput = document.getElementById('user-input');
-    const generateButton = document.getElementById('generate-response');
+    // const generateButton = document.getElementById('generate-response');
     const clearChatButton = document.getElementById('clear-chat');
-    const starBackground = document.getElementById('star-background');
+    // const starBackground = document.getElementById('star-background');
 
     if (chatForm) {
       // When a user submits his or her message
