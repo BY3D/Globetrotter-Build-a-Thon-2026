@@ -25,6 +25,8 @@ class LLMAgent {
             ...this.history,
             { role: "user", content: userPrompt },
         ];
+        // OpenAI says that the Responses API replaces Chat Completions
+        // More info: https://developers.openai.com/api/docs/guides/migrate-to-responses
         const response = await this.client.chat.completions.create({
             model: this.modelId,
             messages,
