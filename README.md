@@ -28,8 +28,8 @@ A fun, LLM-powered way to discover landmarks on a globe
 12. To quit GlobeTrotter, press `ctrl+c` at least twice in the Terminal to shut down the server and Microsoft Foundry
 
 > [!IMPORTANT]
-> Before you run GlobeTrotter, create a keys.js file in the javascript folder.
-> In keys.js, paste the following code: module.exports = { MAPTILER_KEY: "key_from_internet" };
+> Before you run GlobeTrotter, create a `keys.js` file in the javascript folder.
+> In `keys.js`, paste the following code: `module.exports = { MAPTILER_KEY: "key_from_internet" };`
 > Remember to generate a MapTiler API key using the guide in Software Requirements
 
 >[!NOTE]
