@@ -8,8 +8,10 @@ Thumbs.db
 *.lock
 *.tmp
 
+# GlobeTrotter files & folders
 /images
 /javascript/keys.js
+/javascript/agents.js
 /javascript/Other
 /resources
 /stylesheets
