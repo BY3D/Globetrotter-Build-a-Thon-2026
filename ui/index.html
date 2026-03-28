@@ -30,16 +30,21 @@
 
     <div id="MapTiler"></div>
     <script>
-        // import { MAPTILER_KEY } from "../javascript/keys.js";
-        maptilersdk.config.apiKey = "a0oUV9hNkxpUYzHNAQJo";
-        const detailedMap = new maptilersdk.Map({
-            container: 'MapTiler', // container's id or the HTML element to render the map
-            style: "streets-v4",
-            center: [31.1308, 29.9758], // starting position [lng, lat]
-            zoom: 15, // starting zoom
-        });
-        // Make MapTiler instance available to client.js
-        window.detailedMap = detailedMap;
+        // Fetch API key from server
+        fetch('http://localhost:8000/api/config')
+            .then(response => response.json())
+            .then(config => {
+                maptilersdk.config.apiKey = config.maptilerKey;
+                const detailedMap = new maptilersdk.Map({
+                    container: 'MapTiler', // container's id or the HTML element to render the map
+                    style: "streets-v4",
+                    center: [31.1308, 29.9758], // starting position [lng, lat]
+                    zoom: 15, // starting zoom
+                });
+                // Make MapTiler instance available to client.js
+                window.detailedMap = detailedMap;
+            })
+            .catch(error => console.error('Failed to load MapTiler:', error));
     </script>
 
     <!-- User Input and LLM Output -->

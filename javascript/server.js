@@ -88,6 +88,20 @@ const requestListener = async (req, res) => {
     return;
   }
 
+  // API route: GET /api/config
+  if (pathname === '/api/config' && req.method === 'GET') {
+    try {
+      const { MAPTILER_KEY } = require('./keys.js');
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ maptilerKey: MAPTILER_KEY }));
+    } catch (error) {
+      console.error('Config error:', error);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Config not available' }));
+    }
+    return;
+  }
+
   // API route: POST /api/clear-chat
   if (pathname === '/api/clear-chat' && req.method === 'POST') {
     try {

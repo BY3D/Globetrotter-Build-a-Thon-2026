@@ -1,5 +1,5 @@
 # Globetrotter-Build-a-Thon-2026
-A fun, AI-powered way to discover landmarks on a globe
+A fun, LLM-powered way to discover landmarks on a globe
 
 Software Requirements:
 Node JS
