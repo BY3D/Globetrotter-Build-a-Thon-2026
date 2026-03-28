@@ -224,7 +224,7 @@ class ChatClient {
       try {
         window.markerInstance
           .setLngLat([coordinates.longitude, coordinates.latitude])
-          .addTo(mapInstance);
+          .addTo(window.mapInstance);
       } catch (error) {
         console.error('Failed to update map marker:', error);
       }
