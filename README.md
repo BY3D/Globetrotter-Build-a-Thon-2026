@@ -2,8 +2,7 @@
 A fun, LLM-powered way to discover landmarks on a globe
 
 ### Software Requirements:
-- [Microsoft Foundry Local](https://www.foundrylocal.ai)
-- [Node JS](https://nodejs.org/en)
+- [Node JS](https://nodejs.org/)
 - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - Free MapTiler API key [(Guide)](https://docs.maptiler.com/cloud/api/authentication-key/)
 
@@ -25,3 +24,8 @@ A fun, LLM-powered way to discover landmarks on a globe
 10. Then the server will activate on `http://localhost:8000`
 11. Visit the local host domain to use GlobeTrotter
 12. To quit GlobeTrotter, press `ctrl+c` at least twice in the Terminal to shut down the server and Microsoft Foundry
+
+> [!IMPORTANT]
+> Before you run GlobeTrotter, create a keys.js file in the javascript folder.
+> In keys.js, paste the following code: module.exports = { MAPTILER_KEY: "key_from_internet" };
+> Remember to generate a MapTiler API key using the guide in Software Requirements
