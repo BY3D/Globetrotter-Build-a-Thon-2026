@@ -14,7 +14,7 @@ Using `server.js`, Node JS creates the web server to host GlobeTrotter. Without 
 
 Microsoft Foundry Local is an AI (LLM) model manager. It's where GlobeTrotter's AI model is downloaded from and it moves the model into memory and back out of it. It works with the OpenAI service to allow communication with the AI model. Since the AI model is downloaded, Foundry Local enables offline AI inferencing. Its code is in `agents-api.js`
 
-OpenAI offers a Chat Completions API that allows the user to make communication with an AI model possible. It's a relatively simple but effective API feature. Its code is in `agents-api.js`
+OpenAI offers a Chat Completions API that makes communication with the AI model possible. It's a relatively simple but effective API feature. Its code is in `agents-api.js`
 
 ESLint is a service I came across later on in the project. It's used to resolve any problems in JavaScript code. It's unnecessary for using GlobeTrotter. However, it's useful for programming GlobeTrotter. 
 
