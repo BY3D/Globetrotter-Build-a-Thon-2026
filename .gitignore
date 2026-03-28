@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+.DS_Store
+Thumbs.db
+*.log
+*.lock
+*.tmp
+
+# GlobeTrotter files & folders
+/images
+/javascript/keys.js
+/javascript/agents.js
+/javascript/Other
+/resources
+/stylesheets
+
+# Node.js Files
+.ntvs_analysis.dat
+node_modules
+/node_modules
+/node_modules/*
+/node_modules/.package-lock.json
+
+# IntelliJ Files
+/.idea
