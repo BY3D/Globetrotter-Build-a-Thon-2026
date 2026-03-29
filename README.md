@@ -3,6 +3,8 @@ A fun, LLM-powered way to discover landmarks on a globe
 
 ![GlobeTrotter-Main](https://github.com/user-attachments/assets/6c7a9bd5-4f80-49f1-b223-c8c133d1dbb3)
 
+[Demo of GlobeTrotter Video](https://vimeo.com/1178245062?share=copy&fl=sv&fe=ci)
+
 ### Software Requirements:
 - [Node JS](https://nodejs.org/)
 - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
