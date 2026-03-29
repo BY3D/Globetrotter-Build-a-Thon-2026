@@ -29,7 +29,7 @@ Microsoft Foundry Local is an AI (LLM) model manager. It's where GlobeTrotter's 
 
 OpenAI offers a Chat Completions API that makes communication with the AI model possible. It's a relatively simple but effective API feature. Its code is in `agents-api.js`
 
-ESLint is a service I came across later on in the project. It's used to resolve any problems in JavaScript code. It's unnecessary for using GlobeTrotter. However, it's useful for programming GlobeTrotter. 
+ESLint is a service I came across later on in the project. It's used to resolve any coding problems in JavaScript code. It's unnecessary for using GlobeTrotter. However, it's useful for programming correct JavaScript for GlobeTrotter
 
 ### Flow of Backend
 
