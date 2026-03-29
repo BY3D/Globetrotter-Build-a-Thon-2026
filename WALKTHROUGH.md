@@ -41,7 +41,7 @@ The frontend consists of:
 - [Google Fonts](https://fonts.google.com)
 - ~Wikipedia Images~
 
-The frontend is stored in the `/ui` folder. The frontend features an interactive MapTiler map, interactive MapLibre globe, and remotely-retrieved fonts from Google. Much of the computational activity takes place in `client.js`
+The frontend is stored in the `/ui` folder. The frontend features an interactive MapTiler map, interactive MapLibre globe, and remotely-retrieved fonts from Google. Much of the computational activity takes place in `client.js`. I originally intended the frontend to show images of landmarks from Wikipedia next to the MapTiler map. However, the images looked out of place, hence the cross out of the Wikipedia element.
 
 ### Flow of Frontend
 
