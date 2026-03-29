@@ -67,7 +67,8 @@ Impressed by Copilot's result, I would give it a try whenever I was struggling w
 
 ## Sources of Inspiration or Assistance
 
-In addition to the high quality [classes](https://youtube.com/playlist?list=PLmsFUfdnGr3x96hEGNk3JXLQXXO5PG06Y&si=semuwOYS5YepUqP3) I attended from Microsoft Reactor, I found Lee Stott's [Foundry Local Workshop](https://github.com/microsoft-foundry/Foundry-Local-Lab/) to be immensely useful in understanding how to create a web application with Foundry Local.
-Microsoft's team in the Reactor discord have given lots of good information and resources on AI-related topics.
-MapLibre GL is a convenient, lean way to display a 3D globe in a web browser. I highly recommend MapLibre, although MapTiler offers similar but more powerful features at a cost.
-I always enjoy using well-made maps and globes, so they naturally serve as the foundational inspiration for this project.
+In addition to the high quality [classes](https://youtube.com/playlist?list=PLmsFUfdnGr3x96hEGNk3JXLQXXO5PG06Y&si=semuwOYS5YepUqP3) I attended from Microsoft Reactor, I found Lee Stott's [Foundry Local Workshop](https://github.com/microsoft-foundry/Foundry-Local-Lab/) to be immensely useful in understanding how to create a web application with Foundry Local. Microsoft's team in the Reactor discord have given tons of good information and resources on AI software topics.
+
+MapLibre GL is a convenient, pretty way to display a 3D globe in a web browser. MapTiler is similar to MapLibre while offering more powerful features. However, they come at a cost.
+
+Lastly, I always enjoy using well-made maps and globes, so they naturally serve as the foundational inspiration for this project.
