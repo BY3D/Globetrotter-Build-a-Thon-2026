@@ -16,6 +16,12 @@ A fun, LLM-powered way to discover landmarks on a globe
 - Internet connection
 
 ## Running GlobeTrotter
+
+> [!IMPORTANT]
+> Before you run GlobeTrotter, create a `keys.js` file in the javascript folder.
+> In `keys.js`, paste the following code: `module.exports = { MAPTILER_KEY: "key_from_internet" };`
+> Remember to generate a MapTiler API key using the guide in Software Requirements
+
 1. Download the repository
 2. Open up Terminal or Command Prompt
 3. Change directory to the root of the repository download (`/Globetrotter-Build-a-Thon-2026`)
@@ -28,11 +34,6 @@ A fun, LLM-powered way to discover landmarks on a globe
 10. Then the server will activate on `http://localhost:8000`
 11. Visit the local host domain to use GlobeTrotter
 12. To quit GlobeTrotter, press `ctrl+c` at least twice in the Terminal to shut down the server and Microsoft Foundry
-
-> [!IMPORTANT]
-> Before you run GlobeTrotter, create a `keys.js` file in the javascript folder.
-> In `keys.js`, paste the following code: `module.exports = { MAPTILER_KEY: "key_from_internet" };`
-> Remember to generate a MapTiler API key using the guide in Software Requirements
 
 >[!NOTE]
 > In `client.js` there are commented-out functions that display an image of a location from Wikipedia.
