@@ -42,6 +42,8 @@ A fun, LLM-powered way to discover landmarks on a globe.
 11. Visit the local host domain to use GlobeTrotter. If the webpage looks wonky, then zoom it in or out until it looks right
 12. To quit GlobeTrotter, press `ctrl+c` at least twice in the Terminal to shut down the server and Microsoft Foundry
 
+##
+
 >[!TIP]
 > In `client.js` there are commented-out functions that display an image of a landmark from Wikipedia.
 > The idea was to show a picture of a given landmark next to the MapTiler map on GlobeTrotter
