@@ -1,9 +1,15 @@
 # GlobeTrotter - Microsoft Reactor JavaScript AI Build-a-Thon 2026
-A fun, LLM-powered way to discover landmarks on a globe
+A fun, LLM-powered way to discover landmarks on a globe.
 
 ![GlobeTrotter-Main](https://github.com/user-attachments/assets/6c7a9bd5-4f80-49f1-b223-c8c133d1dbb3)
 
 [Demo of GlobeTrotter Video](https://vimeo.com/1178245062?share=copy&fl=sv&fe=ci)
+##
+
+> [!NOTE]
+> The LLM model used for this project won't always give accurate coordinates or descriptions of locations
+
+##
 
 ### Software Requirements:
 - [Node JS](https://nodejs.org/)
@@ -13,6 +19,7 @@ A fun, LLM-powered way to discover landmarks on a globe
 ### Hardware Requirements:
 - 16GB+ of system memory
 - Dedicated graphics processor with 10GB+ VRAM
+- If using a Mac, then an M1 processor with 8GB+ RAM
 - Internet connection
 
 ## Running GlobeTrotter
@@ -35,7 +42,7 @@ A fun, LLM-powered way to discover landmarks on a globe
 11. Visit the local host domain to use GlobeTrotter. If the webpage looks wonky, then zoom it in or out until it looks right
 12. To quit GlobeTrotter, press `ctrl+c` at least twice in the Terminal to shut down the server and Microsoft Foundry
 
->[!NOTE]
+>[!TIP]
 > In `client.js` there are commented-out functions that display an image of a landmark from Wikipedia.
 > The idea was to show a picture of a given landmark next to the MapTiler map on GlobeTrotter
 > However, the Wikipedia pictures didn't match the aesthetic.
