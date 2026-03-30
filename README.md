@@ -35,7 +35,7 @@ A fun, LLM-powered way to discover landmarks on a globe.
 4. Enter `npm install` (`npm.cmd install` for Windows)
 5. Once installed, you should see a `node_modules` folder
 6. Run the Node JS server: `node javascript/server.js`
-7. On the first run, Foundry Local Manager will install Phi-4-mini (4GB to 6GB)
+7. On the first run, Foundry Local Manager will install the Phi-4-mini model (4GB to 6GB)
 8. Phi-4-mini is stored in the user folder: `C:/Users/<You>/.GlobeTrotter` (`~/Users/<You>/.GlobeTrotter` on MacOS)
 9. Once Phi-4-mini is loaded into memory, Node JS will initialise the LLM agents
 10. The server will then activate on `http://localhost:8000`
