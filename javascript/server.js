@@ -1,5 +1,5 @@
 /**
- * This file defines the Node JS server (the "backend")
+ * This file defines the Node JS server (backend)
  * This was originally written by me
  * It was then largely rewritten by GitHub Copilot (Claude Haiku 4.5)
  */
